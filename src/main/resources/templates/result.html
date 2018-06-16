@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Profil</h1>
+<p th:text="'depth: ' + ${profile.depth}" />
+<p th:text="'time: ' + ${profile.overalTime}" />
+<p th:text="'deco stop at' +${profile.depthStopTime}" />
+
+
+<a href="/profile">Submit another message</a>
+</body>
+</html>

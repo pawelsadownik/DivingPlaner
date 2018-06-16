@@ -12,7 +12,8 @@ public class ExcelReader {
 
     public static final String SAMPLE_XLSX_FILE_PATH = "./src/main/resources/TabeleDeko.xlsx";
 
-    int getRowIndex() throws IOException, InvalidFormatException {
+    public static void main(String[] args) throws IOException, InvalidFormatException {
+
 
         Profile profile = new Profile();
 
@@ -20,11 +21,17 @@ public class ExcelReader {
 
         Sheet sheet = workbook.getSheetAt(0);
 
+
         DataFormatter dataFormatter = new DataFormatter();
+        int counter = 51;
 
         int rowIndex = 0;
 
+        profile.setDepth(37);
+        profile.setOveralTime(24);
+
         List<String> stops = new ArrayList<>();
+
 
         for (Row row : sheet) {
 
@@ -43,11 +50,25 @@ public class ExcelReader {
             }
         }
 
-        return rowIndex;
+        Row rowStops = sheet.getRow(rowIndex);
+
+        for (Cell cell : rowStops) {
+
+            String cellValue = dataFormatter.formatCellValue(cell);
+
+
+            stops.add(cellValue);
+
+            if (cellValue != "" && cell.getColumnIndex()>3) {
+                profile.getDepthStopTime().put(counter, cellValue);
+            }
+            counter -= 3;
+        }
+        System.out.println(profile.getDepthStopTime());
+        System.out.println(stops);
+
+        workbook.close();
+
     }
-
-
-
-
 
 }
