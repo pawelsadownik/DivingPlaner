@@ -14,11 +14,9 @@ public class DataColecting  {
 
     public static final String SAMPLE_XLSX_FILE_PATH = "./src/main/resources/TabeleDeko.xlsx";
 
-    public Map<Integer, String> getStopsByDeapth() throws IOException, InvalidFormatException {
+    public Map<Integer, String> getStopsByDeapth(Profile profile) throws IOException, InvalidFormatException {
 
         ExcelReader reader = new ExcelReader();
-
-        Profile profile = new Profile();
 
         Workbook workbook = WorkbookFactory.create(new File(SAMPLE_XLSX_FILE_PATH));
 
@@ -28,7 +26,7 @@ public class DataColecting  {
 
         List<String> stops = new ArrayList<>();
 
-        Row rowStops = sheet.getRow(reader.getRowIndex());
+        Row rowStops = sheet.getRow(reader.getRowIndex(profile));
 
         int counter = 51;
 

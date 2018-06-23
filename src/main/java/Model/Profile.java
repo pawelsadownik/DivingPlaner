@@ -7,19 +7,14 @@ import java.util.TreeMap;
 
 public class Profile {
 
+
+
     private int depth;
 
     private int overalTime;
 
-    public Map<Integer, String> getDepthStopTime() {
-        return depthStopTime;
-    }
-
-    public void setDepthStopTime(Map<Integer, String> depthStopTime) {
-        this.depthStopTime = depthStopTime;
-    }
-
     private Map<Integer, String> depthStopTime = new TreeMap<>(Collections.reverseOrder());
+
 
     public int getDepth() {
         return depth;
@@ -37,6 +32,21 @@ public class Profile {
         this.overalTime = overalTime;
     }
 
+    public Map<Integer, String> getDepthStopTime() {
+        return depthStopTime;
+    }
 
+    public void setDepthStopTime(Map<Integer, String> depthStopTime) {
+        this.depthStopTime = depthStopTime;
+    }
 
+    public Profile() {
+    }
+
+    public Profile(int depth, int overalTime, Map<Integer, String> depthStopTime) {
+        super();
+        this.depth = depth;
+        this.overalTime = overalTime;
+        this.depthStopTime = depthStopTime;
+    }
 }

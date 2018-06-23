@@ -12,10 +12,10 @@ public class ExcelReader {
 
     public static final String SAMPLE_XLSX_FILE_PATH = "./src/main/resources/TabeleDeko.xlsx";
 
-    public int getRowIndex() throws IOException, InvalidFormatException {
+    public int getRowIndex(Profile profile) throws IOException, InvalidFormatException {
 
 
-        Profile profile = new Profile();
+        //Profile profile = new Profile();
 
         Workbook workbook = WorkbookFactory.create(new File(SAMPLE_XLSX_FILE_PATH));
 
@@ -25,20 +25,27 @@ public class ExcelReader {
 
         int rowIndex = 0;
 
+        profile.getDepth();
+        profile.getOveralTime();
+
         for (Row row : sheet) {
 
-            for (Cell cell : row) {
-                String cellValue = dataFormatter.formatCellValue(cell);
+            String firstColumnValue = dataFormatter.formatCellValue(row.getCell(0));
 
-                if (rowIndex != 0)
-                    break;
+            if (Integer.valueOf(firstColumnValue) >= profile.getDepth()) {
 
-                if (cell.getColumnIndex() == 1 && profile.getOveralTime() <= Integer.valueOf(cellValue)) {
+                for (Cell cell : row) {
+                    String cellValue = dataFormatter.formatCellValue(cell);
 
-                    rowIndex = cell.getRowIndex();
-                    break;
+                    if (rowIndex != 0 || cell.getColumnIndex()>1)
+                        break;
+
+                    if (cell.getColumnIndex() == 1 && profile.getOveralTime() <= Integer.valueOf(cellValue)) {
+
+                        rowIndex = cell.getRowIndex();
+                        break;
+                    }
                 }
-
             }
         }
 

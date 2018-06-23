@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.*;
 
 
-public class ExcelReader {
+public class temp {
 
     public static final String SAMPLE_XLSX_FILE_PATH = "./src/main/resources/TabeleDeko.xlsx";
 
@@ -22,32 +22,36 @@ public class ExcelReader {
 
         Sheet sheet = workbook.getSheetAt(0);
 
-
         DataFormatter dataFormatter = new DataFormatter();
+
         int counter = 51;
 
         int rowIndex = 0;
 
         profile.setDepth(37);
+
         profile.setOveralTime(24);
 
         List<String> stops = new ArrayList<>();
 
-
         for (Row row : sheet) {
 
-            for (Cell cell : row) {
-                String cellValue = dataFormatter.formatCellValue(cell);
+            String firstColumnValue = dataFormatter.formatCellValue(row.getCell(0));
 
-                if (rowIndex !=0)
-                    break;
+            if (Integer.valueOf(firstColumnValue) >= profile.getDepth()) {
 
-                if (cell.getColumnIndex() == 1 && profile.getOveralTime() <= Integer.valueOf(cellValue)) {
+                for (Cell cell : row) {
+                    String cellValue = dataFormatter.formatCellValue(cell);
 
-                    rowIndex = cell.getRowIndex();
-                    break;
-                }
+                    if (rowIndex != 0 || cell.getColumnIndex()>1)
+                        break;
 
+                        if (cell.getColumnIndex() == 1 && profile.getOveralTime() <= Integer.valueOf(cellValue)) {
+
+                            rowIndex = cell.getRowIndex();
+                            break;
+                        }
+                    }
             }
         }
 
@@ -56,7 +60,6 @@ public class ExcelReader {
         for (Cell cell : rowStops) {
 
             String cellValue = dataFormatter.formatCellValue(cell);
-
 
             stops.add(cellValue);
 
