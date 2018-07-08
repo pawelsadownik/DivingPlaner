@@ -1,5 +1,5 @@
 /*
-package ExcelService;
+package excelservice;
 
 import Model.Profile;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;

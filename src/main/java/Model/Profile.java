@@ -1,9 +1,12 @@
 package Model;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
+
+
 
 public class Profile {
 
@@ -15,6 +18,28 @@ public class Profile {
 
     private Map<Integer, String> depthStopTime = new TreeMap<>(Collections.reverseOrder());
 
+    private int ascendTime;
+
+    private int ascendSpeed;
+
+    public int getAscendSpeed() {
+
+        ascendSpeed = getDepth()/getOveralTime();
+
+        return ascendSpeed;
+    }
+
+    public void setAscendSpeed(int ascendSpeed) {
+        this.ascendSpeed = ascendSpeed;
+    }
+
+    public int getAscendTime() {
+        return ascendTime;
+    }
+
+    public void setAscendTime(int ascendTime) {
+        this.ascendTime = ascendTime;
+    }
 
     public int getDepth() {
         return depth;
