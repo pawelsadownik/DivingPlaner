@@ -4,16 +4,9 @@ import Model.Profile;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-
-
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
-import org.springframework.core.env.Environment;
-
-
-
 import java.io.IOException;
 import java.util.Map;
 
@@ -22,8 +15,9 @@ import java.util.Map;
 @PropertySource("classpath:application.properties")
 public class DataColecting  {
 
-    @Value("xlsx.file")
+    @Value("${xlsx.file}")
     private String sampleXlsxFile;
+
 
     //PROBA Z ENVIRONMENT
     /*
@@ -37,12 +31,10 @@ public class DataColecting  {
 
     private ExcelReader reader;
 
-
     @Autowired
     public DataColecting() throws IOException, InvalidFormatException {
         reader = new ExcelReader(sampleXlsxFile);
     }
-
 
     public Map<Integer, String> getStopsByDeapth(Profile profile) {
         int rowIndexForProfile = reader.getRowIndex(profile);
