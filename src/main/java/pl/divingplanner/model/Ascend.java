@@ -1,4 +1,4 @@
-package Model;
+package pl.divingplanner.model;
 
 import java.util.ArrayList;
 import java.util.List;

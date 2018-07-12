@@ -1,15 +1,11 @@
-package Model;
-
-import org.springframework.stereotype.Component;
+package pl.divingplanner.model;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
 
-
 public class Profile {
-
 
 
     private int depth;
@@ -24,7 +20,7 @@ public class Profile {
 
     public int getAscendSpeed() {
 
-        ascendSpeed = getDepth()/getOveralTime();
+        ascendSpeed = getDepth() / getOveralTime();
 
         return ascendSpeed;
     }

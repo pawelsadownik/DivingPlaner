@@ -1,23 +1,27 @@
-package excelservice;
+package pl.divingplanner.excelservice;
 
-import Model.Profile;
+import org.springframework.stereotype.Service;
+import pl.divingplanner.model.Profile;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-
+@Service
 public class ExcelReader {
 
     public static final int COUNTER = 51;
 
-
     private Workbook workbook;
     private Sheet sheet;
 
-
-    public ExcelReader(String sampleXlsxFile) throws IOException, InvalidFormatException {
+    @Autowired
+    public ExcelReader(@Value("${xlsx.file}") String sampleXlsxFile) throws IOException, InvalidFormatException {
         workbook = WorkbookFactory.create(new File(sampleXlsxFile));
         sheet = workbook.getSheetAt(0);
     }
