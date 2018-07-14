@@ -18,7 +18,7 @@ public class WelcomeController {
     private DataColecting dataColecting;
 
     @GetMapping("/profile")
-    public String profileForm(Model model) {
+    public String profileForm(Model model) throws IOException, InvalidFormatException {
         model.addAttribute("profile", new Profile());
         return "profile";
     }

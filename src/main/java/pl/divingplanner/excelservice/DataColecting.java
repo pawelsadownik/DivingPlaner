@@ -1,9 +1,11 @@
 package pl.divingplanner.excelservice;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.divingplanner.model.Profile;
 
+import java.io.IOException;
 import java.util.Map;
 
 @Component
@@ -16,7 +18,7 @@ public class DataColecting  {
         this.reader = reader;
     }
 
-    public Map<Integer, String> getStopsByDeapth(Profile profile) {
+    public Map<Integer, String> getStopsByDeapth(Profile profile) throws IOException, InvalidFormatException {
         int rowIndexForProfile = reader.getRowIndex(profile);
         return reader.getDepthStopTime(rowIndexForProfile, profile);
     }

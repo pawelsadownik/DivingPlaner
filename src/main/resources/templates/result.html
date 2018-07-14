@@ -5,13 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>Profil</h1>
-<p th:text="'depth: ' + ${profile.depth}" />
-<p th:text="'time: ' + ${profile.overalTime}" />
-<p th:text="'deco stop at' +${profile.depthStopTime}" />
-<p th:text="'Ascend time: ' + ${profile.ascendTime}" />
-<p th:text="'Speed to First stop: ' + ${profile.ascendSpeed}" />
+<h1>Diving Profile</h1>
+<p th:text="'depth: ' + ${profile.depth} +' m'" />
+<p th:text="'time: ' + ${profile.overalTime}+' min'" />
+<p th:text="'deco stop at ' +${profile.depthStopTime}" />
+<p th:text="'Ascend time to first deco stop: '+ ${profile.ascendTime}+' min'" />
+<p th:text="'Speed to First deco stop: ' + ${profile.ascendSpeed}+' m/min'" />
 
-<a href="/profile">Submit another message</a>
+<a href="/profile">Submit another profile</a>
 </body>
+
 </html>

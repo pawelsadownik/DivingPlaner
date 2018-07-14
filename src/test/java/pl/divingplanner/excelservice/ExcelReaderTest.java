@@ -1,9 +1,23 @@
 package pl.divingplanner.excelservice;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import pl.divingplanner.model.Profile;
+import org.junit.Test;
+import java.io.IOException;
 import static org.junit.Assert.*;
 
 public class ExcelReaderTest {
 
-    // unit testy spring boot i bez
+     @Test
+     public void testExcelReader() throws IOException, InvalidFormatException {
+
+          Profile profile = new Profile();
+          ExcelReader excelReader = new ExcelReader("./src/main/resources/TabeleDeko.xlsx");
+          profile.setDepth(16);
+          profile.setOveralTime(180);
+          int result = excelReader.getRowIndex(profile);
+
+          assertEquals(11, result);
+     }
 
 }

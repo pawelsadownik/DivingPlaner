@@ -19,6 +19,7 @@ public class ExcelReader {
 
     private Workbook workbook;
     private Sheet sheet;
+    List<String> stops = new ArrayList<>();
 
     @Autowired
     public ExcelReader(@Value("${xlsx.file}") String sampleXlsxFile) throws IOException, InvalidFormatException {
@@ -60,11 +61,10 @@ public class ExcelReader {
         return rowIndex;
     }
 
-    public Map<Integer, String> getDepthStopTime(int rowIndexForProfile, Profile profile) {
+    public Map<Integer, String> getDepthStopTime(int rowIndexForProfile, Profile profile) throws IOException, InvalidFormatException {
 
         DataFormatter dataFormatter = new DataFormatter();
 
-        List<String> stops = new ArrayList<>();
 
         Row rowStops = sheet.getRow(rowIndexForProfile);
 
@@ -77,9 +77,19 @@ public class ExcelReader {
                 profile.getDepthStopTime().put(counter, cellValue);
             }
             counter -= 3;
+            if (counter<0){
+                break;
+            }
         }
 
         profile.setAscendTime(Integer.valueOf(stops.get(2)));
+
+        List<Integer> keyList = new ArrayList(profile.getDepthStopTime().keySet());
+
+       profile.setAscendSpeed((profile.getDepth()-keyList.get(0))/profile.getAscendTime());
+
+
         return profile.getDepthStopTime();
     }
+
 }

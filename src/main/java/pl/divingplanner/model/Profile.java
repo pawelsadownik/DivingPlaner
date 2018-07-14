@@ -1,12 +1,17 @@
 package pl.divingplanner.model;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import pl.divingplanner.excelservice.ExcelReader;
+
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
-
+@Service
 public class Profile {
-
 
     private int depth;
 
@@ -19,8 +24,6 @@ public class Profile {
     private int ascendSpeed;
 
     public int getAscendSpeed() {
-
-        ascendSpeed = getDepth() / getOveralTime();
 
         return ascendSpeed;
     }
@@ -61,10 +64,11 @@ public class Profile {
         this.depthStopTime = depthStopTime;
     }
 
-    public Profile() {
+    @Autowired
+    public Profile() throws IOException, InvalidFormatException {
     }
 
-    public Profile(int depth, int overalTime, Map<Integer, String> depthStopTime) {
+    public Profile(int depth, int overalTime, Map<Integer, String> depthStopTime) throws IOException, InvalidFormatException {
         super();
         this.depth = depth;
         this.overalTime = overalTime;
