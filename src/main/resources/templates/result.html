@@ -13,6 +13,10 @@
 <p th:text="'Speed to First deco stop: ' + ${profile.ascendSpeed}+' m/min'" />
 
 <a href="/profile">Submit another profile</a>
+<div align="center">
+    <a th:href="@{/displayBarGraph}">Bar-Graph</a><br /> <br /> <a
+        th:href="@{/displayPieChart}">Pie-Chart</a>
+</div>
 </body>
 
 </html>

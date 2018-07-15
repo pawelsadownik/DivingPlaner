@@ -9,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.divingplanner.model.Profile;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Controller
 public class WelcomeController {
@@ -31,7 +33,15 @@ public class WelcomeController {
         return "result";
     }
 
+    @GetMapping("/displayBarGraph")
+    public String barGraph(Model model) {
+        Map<Integer, Integer> surveyMap = new LinkedHashMap<>();
+        surveyMap.put(10, 40);
+        surveyMap.put(6, 25);
 
+        model.addAttribute("surveyMap", surveyMap);
+        return "LineGraph";
+    }
 
 }
 
