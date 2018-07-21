@@ -23,11 +23,15 @@ public class ExcelReaderTestSpringBoot {
 
     @Test
     public void testFindRowIndex() {
+        //given
+
+        //when
         profile.setDepth(16);
         profile.setOveralTime(180);
 
         int result = excelReader.getRowIndex(profile);
 
+        //then
         assertEquals(11, result);
     }
 

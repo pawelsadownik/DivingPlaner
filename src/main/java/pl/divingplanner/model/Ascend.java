@@ -19,8 +19,6 @@ public class Ascend {
         for (int i=1; i<ascendTime*2;i++){
 
 
-
-
         }
 
 

@@ -23,9 +23,19 @@ public class Profile {
 
     private int ascendSpeed;
 
+    private int descendTime;
+
     public int getAscendSpeed() {
 
         return ascendSpeed;
+    }
+    public int getDescendTime() {
+
+        return descendTime;
+    }
+
+    public void setDescendTime(int descendTime) {
+        this.descendTime = descendTime;
     }
 
     public void setAscendSpeed(int ascendSpeed) {

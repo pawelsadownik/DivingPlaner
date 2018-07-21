@@ -1,6 +1,7 @@
 package pl.divingplanner.excelservice;
 
 import org.springframework.stereotype.Service;
+import pl.divingplanner.model.DivingProces;
 import pl.divingplanner.model.Profile;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
@@ -50,7 +51,7 @@ public class ExcelReader {
                         break;
 
                     if (cell.getColumnIndex() == 1 && profile.getOveralTime() <= Integer.valueOf(cellValue)) {
-//return rowIndex
+
                         rowIndex = cell.getRowIndex();
                         break;
                     }
@@ -77,7 +78,7 @@ public class ExcelReader {
                 profile.getDepthStopTime().put(counter, cellValue);
             }
             counter -= 3;
-            if (counter<0){
+            if (counter < 0) {
                 break;
             }
         }
@@ -86,10 +87,56 @@ public class ExcelReader {
 
         List<Integer> keyList = new ArrayList(profile.getDepthStopTime().keySet());
 
-       profile.setAscendSpeed((profile.getDepth()-keyList.get(0))/profile.getAscendTime());
 
+        profile.setAscendSpeed((profile.getDepth() - keyList.get(0)) / profile.getAscendTime());
+
+        profile.setDescendTime(1);
+
+        DivingProces divingProces = new DivingProces();
+
+        //Ustawienie listy glebokosci
+
+        divingProces.getDepthStopsList().add(0);
+        divingProces.getDepthStopsList().add(profile.getDepth());
+        divingProces.getDepthStopsList().add(profile.getDepth());
+        divingProces.getDepthStopsList().add(keyList.get(0));
+        divingProces.getDepthStopsList().addAll(keyList);
+
+        //Ustawienie listy czasu
+        List<String> listStrings = new ArrayList<>(profile.getDepthStopTime().values());
+        List<String> tempList = new ArrayList<>();
+
+
+        for (int i = 0; i < listStrings.size(); i++) {
+            String[] output = listStrings.get(i).split("\\(");
+            tempList.add(output[0]);
+        }
+
+        List<Integer> listTimes = new ArrayList<Integer>(listStrings.size());
+
+
+
+        divingProces.setWorkingTime(profile.getOveralTime()-profile.getDescendTime());
+
+        listTimes.add(0);
+        listTimes.add(profile.getDescendTime());
+        listTimes.add(divingProces.getWorkingTime());
+        listTimes.add(profile.getAscendTime());
+
+
+        for (String current : tempList) {
+            listTimes.add(Integer.parseInt(current));
+        }
+        divingProces.getDepthStopsList().add(0);
+        listTimes.add(3);
+
+       divingProces.setTimeStopsList(listTimes);
+
+        divingProces.getDepthStopsList();
+        divingProces.getTimeStopsList();
 
         return profile.getDepthStopTime();
     }
+
 
 }

@@ -7,10 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.divingplanner.model.DivingProces;
 import pl.divingplanner.model.Profile;
+
+import java.awt.*;
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.List;
 
 @Controller
 public class WelcomeController {
@@ -18,6 +21,7 @@ public class WelcomeController {
 
     @Autowired
     private DataColecting dataColecting;
+    //private DivingProces divingProces;
 
     @GetMapping("/profile")
     public String profileForm(Model model) throws IOException, InvalidFormatException {
@@ -35,11 +39,11 @@ public class WelcomeController {
 
     @GetMapping("/displayBarGraph")
     public String barGraph(Model model) {
-        Map<Integer, Integer> surveyMap = new LinkedHashMap<>();
-        surveyMap.put(10, 40);
-        surveyMap.put(6, 25);
+        //Map<List, List> surveyMap = new HashMap<>();
+        //surveyMap.put(divingProces.getDepthStopsList(), divingProces.getTimeStopsList());
 
-        model.addAttribute("surveyMap", surveyMap);
+        //model.addAttribute("surveyMap", surveyMap);
+        model.addAttribute("divingProces", new DivingProces());
         return "LineGraph";
     }
 
