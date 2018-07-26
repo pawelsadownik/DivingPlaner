@@ -1,13 +1,15 @@
 package pl.divingplanner.excelservice;
 
 import org.springframework.stereotype.Service;
+import pl.divingplanner.controller.EmailService;
 import pl.divingplanner.model.DivingProces;
+import pl.divingplanner.model.Email;
 import pl.divingplanner.model.Profile;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import pl.divingplanner.controller.WelcomeController;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +23,9 @@ public class ExcelReader {
     private Workbook workbook;
     private Sheet sheet;
     List<String> stops = new ArrayList<>();
+    @Autowired
+    private EmailService emailService;
+    private Email email;
 
     @Autowired
     public ExcelReader(@Value("${xlsx.file}") String sampleXlsxFile) throws IOException, InvalidFormatException {
@@ -130,10 +135,13 @@ public class ExcelReader {
         divingProces.getDepthStopsList().add(0);
         listTimes.add(3);
 
-       divingProces.setTimeStopsList(listTimes);
+        divingProces.setTimeStopsList(listTimes);
 
-        divingProces.getDepthStopsList();
-        divingProces.getTimeStopsList();
+       // email.setAddress("pawel.sadownik@wp.pl");
+       // email.setContent("content");
+        //email.setTitle("title");
+
+        //emailService.send(email.getAddress(), email.getTitle(), email.getContent());
 
         return profile.getDepthStopTime();
     }

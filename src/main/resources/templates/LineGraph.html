@@ -27,25 +27,23 @@
 <script th:inline="javascript">
     $(function(){
         Highcharts.chart('container', {
-
+            chart: {
+                type: 'column'
+            },
             title: {
-                text: 'Diving profile'
+                text: 'Technology Popularity In India'
             },
             subtitle: {
-                text: 'Source: Tabele dekomresji nurkow MW'
+                text: 'All Details is not true its a dummy Map'
             },
             xAxis: {
-                categories: [[${divingProces.getDepthStopsList()}]],
-                crosshair: true,
-                title: {
-                    text: 'Dive time'
-                }
+                categories: [[${time}]],
+                crosshair: true
             },
             yAxis: {
                 min: 0,
-                max:100,
                 title: {
-                    text: 'Depth'
+                    text: 'Technology rating [in %]'
                 }
             },
             tooltip: {
@@ -59,12 +57,12 @@
             plotOptions: {
                 column: {
                     pointPadding: 0.2,
-                    borderWidth: 0
+                    borderWidth: 10
                 }
             },
             series: [{
-                name: 'Diving Profile',
-                data: [[${surveyMap.values()}]]
+                name: 'Technology',
+                data: [[${depth}]]
             }]
         });
     });

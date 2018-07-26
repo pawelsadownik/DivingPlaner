@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @SpringBootApplication
+
 @ComponentScan(basePackages = "pl.divingplanner")
 public class DivingPlanerApplication implements WebMvcConfigurer {
 

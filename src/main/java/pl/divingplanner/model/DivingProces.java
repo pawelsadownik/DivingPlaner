@@ -8,8 +8,6 @@ import java.util.List;
 @Service
 public class DivingProces {
 
-    @Autowired
-    private Profile profile;
 
     @Autowired
     public DivingProces() {
@@ -17,9 +15,9 @@ public class DivingProces {
 
     private int workingTime;
 
-    List<Integer> timeStopsList = new ArrayList<>();
+    public static List<Integer> timeStopsList = new ArrayList<>();
 
-    List<Integer> depthStopsList = new ArrayList<>();
+    public static List<Integer> depthStopsList = new ArrayList<>();
 
     public int getWorkingTime() {
 
