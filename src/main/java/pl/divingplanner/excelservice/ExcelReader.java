@@ -137,12 +137,6 @@ public class ExcelReader {
 
         divingProces.setTimeStopsList(listTimes);
 
-       // email.setAddress("pawel.sadownik@wp.pl");
-       // email.setContent("content");
-        //email.setTitle("title");
-
-        //emailService.send(email.getAddress(), email.getTitle(), email.getContent());
-
         return profile.getDepthStopTime();
     }
 
