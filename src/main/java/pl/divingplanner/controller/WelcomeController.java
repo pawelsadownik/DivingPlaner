@@ -100,7 +100,6 @@ public class WelcomeController extends DivingProces {
 
         return "divingPlanReady";
 
-
     }
 
 }

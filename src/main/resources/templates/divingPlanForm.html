@@ -8,6 +8,9 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
 </head>
 <body>
 
@@ -21,8 +24,12 @@
 
 
     <div id="rows">
-    <p> <button type="button" value="Dodaj inne" onclick="addForm(); " /></p>
+    <p> <input type="button" value="Dodaj inne" onclick=addForm(); /></p>
     </div>
+
+
+
+
 
 
     <p>Cel prac podwodnych </p>
@@ -31,27 +38,24 @@
 
     <p><input type="submit" value="Submit" /> </p>
 </form>
+<div id="rekognitionJsonTop3">
+    $('#rekognitionJsonTop3').html(formkod);
+</div>
 
-
-<script th:inline="javascript">
-
-    var rowId = 0;
-    var html = '<input type="text" th:field ="*{divingType}" />' ;
+<script>
 
     function addForm() {
-        rowId++;
 
-        addElement('rows', 'r', 'row+' + rowId, html);
+        var formularz = [];
+        linia1kodu = "<input type=\"text\" th:field =\"*{divingType}\" />"
+
+        formularz.push(linia1kodu);
+
+        var formkod = formularz.join('');
     }
 
-    function addElement(parentId, elementTag, elementId, html) {
 
-        var p = document.getElementById(parentId);
-        var newElement = document.createElement(elementTag);
-        newElement.setAttribute('id', elementId);
-        newElement.innerHTML = html;
-        p.appendChild(newElement);
-    }
+
 </script>
 </body>
 </html>
