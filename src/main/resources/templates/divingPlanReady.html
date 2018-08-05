@@ -13,7 +13,44 @@
 </head>
 
 <body>
-<p th:text="'Typ nurkowania: ' + ${divingPlan.divingType}" />
+
+
+
+<div class="container">
+
+<div th:if="${not #lists.isEmpty(divingPlan.divingType)}">
+    <h2>Typ nurkowania</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+        </tr>
+
+        <tr th:each="type : ${divingPlan.divingType}">
+            <td th:text="${divingPlan.divingType.indexOf(type)}+1"></td>
+            <td th:text="${type}"></td>
+        </tr>
+    </table>
+</div>
+
+    <div th:if="${not #lists.isEmpty(divingPlan.purpose)}">
+        <h2>Cel nurkowania</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+            </tr>
+
+            <tr th:each="target : ${divingPlan.purpose}">
+                <td th:text="${divingPlan.purpose.indexOf(target)}+1"></td>
+                <td th:text="${target}"></td>
+
+
+            </tr>
+
+        </table>
+    </div>
+</div>
 
 </body>
 </html>

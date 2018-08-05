@@ -6,24 +6,52 @@
     <meta charset="ISO-8859-1" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-
-    <!-- Optional theme -->
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
 </head>
 <body>
-<p> th:value=${#dates.year(#dates.createNow())}
+
 <h1>Diving Plan</h1>
 
 
 <form action="#" th:action="@{/divingPlanForm}" th:object="${divingPlan}" method="post">
-    <p>Typ nurkowania: </p>
+    <p>Rodzaj prac podwodnych </p>
     <p><input type="checkbox" th:value="Szkolne" th:field="*{divingType}" />Szkolne</p>
-    <p><input type="checkbox" th:value="Eksperymentalne" th:field="*{divingType}" />experymentalne</p>
-    <p>Inne: <input type="text" th:field="*{divingType}" /></p>
-    <p><input type="submit" value="Submit" /> </p>
+    <p><input type="checkbox" th:value="Eksperymentalne" th:field="*{divingType}" />Eksperymentalne</p>
 
+
+    <div id="rows">
+    <p> <button type="button" value="Dodaj inne" onclick="addForm(); " /></p>
+    </div>
+
+
+    <p>Cel prac podwodnych </p>
+    <p>Inne: <input type="text" th:field="*{purpose}" /></p>
+
+
+    <p><input type="submit" value="Submit" /> </p>
 </form>
 
+
+<script th:inline="javascript">
+
+    var rowId = 0;
+    var html = '<input type="text" th:field ="*{divingType}" />' ;
+
+    function addForm() {
+        rowId++;
+
+        addElement('rows', 'r', 'row+' + rowId, html);
+    }
+
+    function addElement(parentId, elementTag, elementId, html) {
+
+        var p = document.getElementById(parentId);
+        var newElement = document.createElement(elementTag);
+        newElement.setAttribute('id', elementId);
+        newElement.innerHTML = html;
+        p.appendChild(newElement);
+    }
+</script>
 </body>
 </html>
