@@ -18,43 +18,34 @@
 
 
 <form action="#" th:action="@{/divingPlanForm}" th:object="${divingPlan}" method="post">
+
     <p>Rodzaj prac podwodnych </p>
     <p><input type="checkbox" th:value="Szkolne" th:field="*{divingType}" />Szkolne</p>
     <p><input type="checkbox" th:value="Eksperymentalne" th:field="*{divingType}" />Eksperymentalne</p>
 
 
     <div id="rows">
-    <p> <input type="button" value="Dodaj inne" onclick=addForm(); /></p>
+    <input type="button" value="Dodaj inne" onclick=addForm(); />
     </div>
 
-
-
-
-
+    <div id="additionalForm">
+    </div>
 
     <p>Cel prac podwodnych </p>
     <p>Inne: <input type="text" th:field="*{purpose}" /></p>
-
-
     <p><input type="submit" value="Submit" /> </p>
-</form>
-<div id="rekognitionJsonTop3">
-    $('#rekognitionJsonTop3').html(formkod);
-</div>
 
-<script>
+</form>
+
+<script th:inline="javascript">
 
     function addForm() {
 
-        var formularz = [];
-        linia1kodu = "<input type=\"text\" th:field =\"*{divingType}\" />"
+        var htmlLine = '<input type="text" th:field ="*{divingType}" />';
 
-        formularz.push(linia1kodu);
+        $('#additionalForm').html(htmlLine);
 
-        var formkod = formularz.join('');
     }
-
-
 
 </script>
 </body>
