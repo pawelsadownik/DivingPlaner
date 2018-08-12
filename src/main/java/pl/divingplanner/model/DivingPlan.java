@@ -7,7 +7,7 @@ public class DivingPlan {
 
     private List<String> divingType = new LinkedList<>();
     private List<String> purpose = new LinkedList<>();
-    private List<String> risk = new LinkedList<>();
+    private List<Risk> riskList = new LinkedList<>();
     private List<String> security = new LinkedList<>();
     private List<String> procedure = new LinkedList<>();
     private List<String> equipment = new LinkedList<>();
@@ -34,15 +34,18 @@ public class DivingPlan {
     }
 
     public void setPurpose(List<String> purpose) {
+
+
         this.purpose = purpose;
     }
 
-    public List<String> getRisk() {
-        return risk;
+
+    public List<Risk> getRiskList() {
+        return riskList;
     }
 
-    public void setRisk(List<String> risk) {
-        this.risk = risk;
+    public void setRiskList(List<Risk> riskList) {
+        this.riskList = riskList;
     }
 
     public List<String> getSecurity() {

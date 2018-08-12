@@ -7,10 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.divingplanner.model.DivingProces;
-import pl.divingplanner.model.Email;
-import pl.divingplanner.model.Profile;
-import pl.divingplanner.model.DivingPlan;
+import pl.divingplanner.model.*;
 
 import java.io.IOException;
 import java.util.*;
@@ -24,6 +21,7 @@ public class WelcomeController extends DivingProces {
     private EmailService emailService;
 
 
+
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profileForm(Model model) throws IOException, InvalidFormatException {
         model.addAttribute("profile", new Profile());
@@ -31,7 +29,7 @@ public class WelcomeController extends DivingProces {
         return "profile";
     }
 
-    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    @PostMapping("/profile")
     public String getProfile(@ModelAttribute Profile profile, BindingResult errors, Model model) throws IOException, InvalidFormatException {
         depthStopsList.clear();
         timeStopsList.clear();
@@ -63,7 +61,7 @@ public class WelcomeController extends DivingProces {
         return "email";
     }
 
-    @RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
+    @PostMapping("/sendEmail")
     public String sendEmail(@ModelAttribute Email email, BindingResult errors, Model model) {
 
        // email.setContent( z sesji );
@@ -76,27 +74,17 @@ public class WelcomeController extends DivingProces {
     @GetMapping("/divingPlanForm")
     public String divingPlanForm(Model model) throws IOException, InvalidFormatException {
         model.addAttribute("divingPlan", new DivingPlan());
+        model.addAttribute("risk", new Risk());
 
         return "divingPlanForm";
     }
+    @PostMapping("/divingPlanForm")
+    public String prepareDivingPlan(@ModelAttribute DivingPlan divingPlan, BindingResult errors, @ModelAttribute Risk risk, Model model) {
 
-    @RequestMapping(value = "/divingPlanForm", method = RequestMethod.POST)
-    public String prepareDivingPlan(@ModelAttribute DivingPlan divingPlan, BindingResult errors, Model model) {
+       // List<Risk> riskList = new LinkedList<Risk>(risk);
+        //model.addAttribute("riskList", riskList);
+        divingPlan.getRiskList().add(risk);
 
-        List<String> divingType = new LinkedList<>();
-        List<String> purpose = new LinkedList<>();
-        List<String> risk = new LinkedList<>();
-        List<String> security = new LinkedList<>();
-        List<String> procedure = new LinkedList<>();
-        List<String> equipment = new LinkedList<>();
-        List<String> team= new LinkedList<>();
-        List<String> commands = new LinkedList<>();
-        List<String> communication = new LinkedList<>();
-        List<String> asecuration = new LinkedList<>();
-        List<String> accident = new LinkedList<>();
-        List<String> weatherConditions = new LinkedList<>();
-        List<String> evacuation = new LinkedList<>();
-        List<String> medic = new LinkedList<>();
 
         return "divingPlanReady";
 
