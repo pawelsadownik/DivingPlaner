@@ -19,17 +19,17 @@
 
 <form action="#" th:action="@{/divingPlanForm}"  method="post">
 
-<div th:object="${divingPlan}">
-    <p>Rodzaj prac podwodnych </p>
-    <p><input type="checkbox" th:value="Szkolne" th:field="*{divingType}" />Szkolne</p>
-    <p><input type="checkbox" th:value="Eksperymentalne" th:field="*{divingType}" />Eksperymentalne</p>
+    <div th:object="${divingPlan}">
+        <p>Rodzaj prac podwodnych </p>
+        <p><input type="checkbox" th:value="Szkolne" th:field="*{divingType}" />Szkolne</p>
+        <p><input type="checkbox" th:value="Eksperymentalne" th:field="*{divingType}" />Eksperymentalne</p>
 
-    <input type="button" value="Dodaj własne" onclick='addForm();'/>
+        <input type="button" value="Dodaj własne" onclick='addForm();'/>
         <textarea id="invisibleElement" cols="50" rows="4" th:value="null" th:field="*{divingType}" placeholder="(Wprowadz cel)" disabled > </textarea>
-</div>
+    </div>
 
     <div th:object="${divingPlan}">
-    <p>Cel prac podwodnych </p>
+        <p>Cel prac podwodnych </p>
         <p>Inne: <input type="text" th:field="*{purpose}" /></p>
     </div>
 
@@ -74,6 +74,66 @@
         </table>
 
         <p><input type="submit" value="Submit" /> </p>
+    </div>
+
+    <div th:object="${divingPlan}">
+        <p>Podjęte środki bezpieczeństwa: </p>
+        <p>Inne: <input type="text" th:field="*{security}" /></p>
+    </div>
+
+    <div th:object="${divingPlan}">
+        <p>Procedura wykonywania prac podwodnych: </p>
+        <p>Inne: <input type="text" th:field="*{procedure}" /></p>
+    </div>
+
+
+    <div th:object="${divingPlan}">
+        <p>Wyposażenie: </p>
+        <p>Inne: <input type="text" th:field="*{equipment}" /></p>
+    </div>
+
+    <div th:object="${divingPlan}">
+        <p>Skład ekipy </p>
+        <p>Inne: <input type="text" th:field="*{team}" /></p>
+    </div>
+
+    <div th:object="${divingPlan}">
+        <p>Zapas czynników oddechowych </p>
+        <p>Inne: <input type="text" th:field="*{airSupply}" /></p>
+    </div>
+
+    <div th:object="${divingPlan}">
+        <p>Zapas czynników oddechowych </p>
+        <p>Inne: <input type="text" th:field="*{commands}" /></p>
+    </div>
+    <div th:object="${divingPlan}">
+        <p>Zapas czynników oddechowych </p>
+        <p>Inne: <input type="text" th:field="*{communication}" /></p>
+    </div>
+
+    <div th:object="${divingPlan}">
+        <p>Zapas czynników oddechowych </p>
+        <p>Inne: <input type="text" th:field="*{asecuration}" /></p>
+    </div>
+
+    <div th:object="${divingPlan}">
+        <p>Zapas czynników oddechowych </p>
+        <p>Inne: <input type="text" th:field="*{accident}" /></p>
+    </div>
+
+    <div th:object="${divingPlan}">
+        <p>Zapas czynników oddechowych </p>
+        <p>Inne: <input type="text" th:field="*{weatherConditions}" /></p>
+    </div>
+
+    <div th:object="${divingPlan}">
+        <p>Zapas czynników oddechowych </p>
+        <p>Inne: <input type="text" th:field="*{evacuation}" /></p>
+    </div>
+
+    <div th:object="${divingPlan}">
+        <p>Zapas czynników oddechowych </p>
+        <p>Inne: <input type="text" th:field="*{medic}" /></p>
     </div>
 </form>
 

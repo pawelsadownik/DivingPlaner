@@ -12,6 +12,7 @@ public class DivingPlan {
     private List<String> procedure = new LinkedList<>();
     private List<String> equipment = new LinkedList<>();
     private List<String> team= new LinkedList<>();
+    private List<String> airSupply = new LinkedList<>();
     private List<String> commands = new LinkedList<>();
     private List<String> communication = new LinkedList<>();
     private List<String> asecuration = new LinkedList<>();
@@ -78,6 +79,14 @@ public class DivingPlan {
 
     public void setTeam(List<String> team) {
         this.team = team;
+    }
+
+    public List<String> getAirSupply() {
+        return airSupply;
+    }
+
+    public void setAirSupply(List<String> airSupply) {
+        this.airSupply = airSupply;
     }
 
     public List<String> getCommands() {
