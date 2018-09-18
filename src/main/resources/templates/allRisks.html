@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Risks</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> RISK MANAGEMENT </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Etap prac</th>
+                    <th>Rodzaj zagrozenia</th>
+                    <th>Osoba zagrożona</th>
+                    <th>Wstępna ocena ryzyka</th>
+                    <th>Przeciwdziałanie</th>
+                    <th>Końcowa ocena ryzyka</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${riskList.empty}">
+                    <td colspan="2"> No RISKS PLANNED </td>
+                </tr>
+                <tr th:each="risk : ${riskList}">
+                    <td><span th:text="${risk.etapPrac}"> Etap Prac </span></td>
+                    <td><span th:text="${risk.rodzajZagrozenia}"> Rodzaj zagrozenia </span></td>
+                    <td><span th:text="${risk.zagrozonaOsoba}"> Zagrozona osoba </span></td>
+                    <td><span th:text="${risk.wstepneRyzyko}"> wstepne Ryzyko </span></td>
+                    <td><span th:text="${risk.przeciwdzialanie}"> Przeciwdzialanie </span></td>
+                    <td><span th:text="${risk.koncoweRyzyko}"> Koncowe Ryzyko</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

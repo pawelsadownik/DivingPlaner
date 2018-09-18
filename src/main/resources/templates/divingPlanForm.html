@@ -34,48 +34,6 @@
     </div>
 
 
-    <div th:object="${risk}" >
-
-    <h2>Analiza ryzyka</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>Etap prac</th>
-                <th>Rodzaj zagrozenia</th>
-                <th>Osoba zagrożona</th>
-                <th>Wstępna ocena ryzyka</th>
-                <th>Przeciwdziałanie</th>
-                <th>Końcowa ocena ryzyka</th>
-            </tr>
-            <tr>
-                <th><input type="text" th:field="*{etapPrac}" /> </th>
-                <th><input type="text" th:field="*{rodzajZagrozenia}" /> </th>
-                <th><input type="text" th:field="*{zagrozonaOsoba}" /> </th>
-                <th><input type="text" th:field="*{wstepneRyzyko}" /> </th>
-                <th><input type="text" th:field="*{przeciwdzialanie}" /> </th>
-                <th><input type="text" th:field="*{koncoweRyzyko}" /> </th>
-            </tr>
-            <tr>
-                <th><input type="text" th:field="*{etapPrac}" /> </th>
-                <th><input type="text" th:field="*{rodzajZagrozenia}" /> </th>
-                <th><input type="text" th:field="*{zagrozonaOsoba}" /> </th>
-                <th><input type="text" th:field="*{wstepneRyzyko}" /> </th>
-                <th><input type="text" th:field="*{przeciwdzialanie}" /> </th>
-                <th><input type="text" th:field="*{koncoweRyzyko}" /> </th>
-            </tr>
-            <tr>
-                <th><input type="text" th:field="*{etapPrac}" /> </th>
-                <th><input type="text" th:field="*{rodzajZagrozenia}" /> </th>
-                <th><input type="text" th:field="*{zagrozonaOsoba}" /> </th>
-                <th><input type="text" th:field="*{wstepneRyzyko}" /> </th>
-                <th><input type="text" th:field="*{przeciwdzialanie}" /> </th>
-                <th><input type="text" th:field="*{koncoweRyzyko}" /> </th>
-            </tr>
-
-        </table>
-
-        <p><input type="submit" value="Submit" /> </p>
-    </div>
-
     <div th:object="${divingPlan}">
         <p>Podjęte środki bezpieczeństwa: </p>
         <p>Inne: <input type="text" th:field="*{security}" /></p>
@@ -135,17 +93,10 @@
         <p>Zapas czynników oddechowych </p>
         <p>Inne: <input type="text" th:field="*{medic}" /></p>
     </div>
+
+    <p><input type="submit" value="Submit" /> </p>
+
 </form>
-
-<script th:inline="javascript">
-
-    function addForm() {
-
-        var htmlLine = document.getElementById('invisibleElement')
-        htmlLine.disabled = false;
-    }
-
-
-</script>
 </body>
 </html>
+

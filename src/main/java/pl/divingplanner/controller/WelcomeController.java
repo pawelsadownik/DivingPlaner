@@ -1,5 +1,7 @@
 package pl.divingplanner.controller;
 
+import pl.divingplanner.calculations.GasAmount;
+import pl.divingplanner.calculations.TimeUnderWater;
 import pl.divingplanner.excelservice.DataColecting;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +16,14 @@ import java.util.*;
 import java.util.List;
 
 @Controller
-public class WelcomeController extends DivingProces {
+public class WelcomeController {
+    private List<Double> gasAmounts = new ArrayList<>();
+    private List<Double> timesUnderWater = new ArrayList<>();
 
     @Autowired
     private DataColecting dataColecting;
     private EmailService emailService;
-
-
+    private RiskService riskService;
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profileForm(Model model) throws IOException, InvalidFormatException {
@@ -31,14 +34,20 @@ public class WelcomeController extends DivingProces {
 
     @PostMapping("/profile")
     public String getProfile(@ModelAttribute Profile profile, BindingResult errors, Model model) throws IOException, InvalidFormatException {
-        depthStopsList.clear();
-        timeStopsList.clear();
+
+
+        DivingProces divingProces = new DivingProces();
+
+        divingProces.depthStopsList.clear();
+        divingProces.timeStopsList.clear();
 
         dataColecting.getStopsByDeapth(profile);
 
-        List<Integer> time = new LinkedList<>(getTimeStopsList());
 
-        List<Integer> depth = new LinkedList<>(getDepthStopsList());
+
+        List<Integer> time = new LinkedList<>(divingProces.getTimeStopsList());
+
+        List<Integer> depth = new LinkedList<>(divingProces.getDepthStopsList());
 
         //do wsyswietlenia wynikow na result
 
@@ -74,21 +83,66 @@ public class WelcomeController extends DivingProces {
     @GetMapping("/divingPlanForm")
     public String divingPlanForm(Model model) throws IOException, InvalidFormatException {
         model.addAttribute("divingPlan", new DivingPlan());
-        model.addAttribute("risk", new Risk());
+
 
         return "divingPlanForm";
     }
     @PostMapping("/divingPlanForm")
     public String prepareDivingPlan(@ModelAttribute DivingPlan divingPlan, BindingResult errors, @ModelAttribute Risk risk, Model model) {
 
-       // List<Risk> riskList = new LinkedList<Risk>(risk);
-        //model.addAttribute("riskList", riskList);
-        divingPlan.getRiskList().add(risk);
 
 
         return "divingPlanReady";
 
     }
 
+    @GetMapping("/riskForm")
+    public String showCreateForm(@ModelAttribute RiskCreationDto riskCreationDto, Model model) {
+        RiskCreationDto risksForm = new RiskCreationDto();
+
+        risksForm.addRisk(new Risk());
+
+
+        model.addAttribute("form", risksForm);
+
+        return "riskForm";
+    }
+
+
+    @PostMapping("/allRisks")
+    public String saveRisks() {
+
+        //riskService.saveAll(form.getRiskList());
+
+        //model.addAttribute("risk", riskService.findAll());
+
+
+        return "allRisks";
+    }
+    @PostMapping("/calculations")
+    public String handlePostRequest(@ModelAttribute GasAmount gasAmount ,TimeUnderWater timeUnderWater , BindingResult errors, Model model) {
+        gasAmounts.clear();
+        gasAmount.setAmountOfGas(gasAmount.countGasAmount(gasAmount));
+        gasAmounts.add(gasAmount.getAmountOfGas());
+
+        timesUnderWater.clear();
+        timeUnderWater.setTime(timeUnderWater.countTime(timeUnderWater));
+        timesUnderWater.add(timeUnderWater.getTime());
+
+
+        return "redirect:/calculations";
+    }
+
+    @GetMapping("/calculations")
+    public String handleGetRequest(Model model) {
+
+        model.addAttribute("gasamount", new GasAmount());
+        model.addAttribute("gasAmounts", gasAmounts);
+        model.addAttribute("timeUnderWater", new TimeUnderWater());
+        model.addAttribute("timesUnderWater", timesUnderWater);
+
+        return "calculations";
+    }
 }
+
 

@@ -2,6 +2,7 @@ package pl.divingplanner.model;
 
 public class Risk {
 
+    private long id;
     private String etapPrac;
     private String rodzajZagrozenia;
     private String zagrozonaOsoba;
@@ -9,7 +10,13 @@ public class Risk {
     private String przeciwdzialanie;
     private String koncoweRyzyko;
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
     public String getEtapPrac() {
         return etapPrac;
     }

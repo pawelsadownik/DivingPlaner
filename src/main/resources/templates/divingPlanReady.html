@@ -51,35 +51,11 @@
         </table>
     </div>
 
-    <div th:if="${not #lists.isEmpty(divingPlan.riskList)}">
-        <h2>Analiza ryzyka</h2>
 
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Etap prac</th>
-                <th>Rodzaj zagrozenia</th>
-                <th>Osoba zagrożona</th>
-                <th>Wstępna ocena ryzyka</th>
-                <th>Przeciwdziałanie</th>
-                <th>Końcowa ocena ryzyka</th>
-            </tr>
-            </thead>
-
-            <tbody th:each="risky : ${divingPlan.riskList}">
-            <tr>
-                <td th:text="${risky.getEtapPrac()}"></td>
-                <td th:text="${risky.getRodzajZagrozenia()}"></td>
-                <td th:text="${risky.getZagrozonaOsoba()}"></td>
-                <td th:text="${risky.getWstepneRyzyko()}"></td>
-                <td th:text="${risky.getPrzeciwdzialanie()}"></td>
-                <td th:text="${risky.getKoncoweRyzyko()}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
 
 </div>
+
+<a href="riskForm">RISK MANAGEMENT</a>
 
 </body>
 </html>

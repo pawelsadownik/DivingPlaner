@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:textarea="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Analiza ryzyka</h2>
+<form action="#" th:action="@{/riskForm}" th:object="${form}"
+      method="post">
+    <fieldset>
+        <input type="submit" id="submitButton" th:value="Save">
+        <input type="reset" id="resetButton" name="reset" th:value="Reset"/>
+
+
+    <table class="dynatable" id="myTable">
+        <thead>
+        <tr>
+            <th>Etap prac</th>
+            <th>Rodzaj zagrozenia</th>
+            <th>Osoba zagrożona</th>
+            <th>Wstępna ocena ryzyka</th>
+            <th>Przeciwdziałanie</th>
+            <th>Końcowa ocena ryzyka</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="risk, itemStat : *{riskList}">
+            <td><input th:field="*{riskList[__${itemStat.index}__].etapPrac}" /></td>
+            <td><input th:field="*{riskList[__${itemStat.index}__].rodzajZagrozenia}" /></td>
+            <td><input th:field="*{riskList[__${itemStat.index}__].zagrozonaOsoba}" /></td>
+            <td><input th:field="*{riskList[__${itemStat.index}__].wstepneRyzyko}" /></td>
+            <td><input th:field="*{riskList[__${itemStat.index}__].przeciwdzialanie}" /></td>
+            <td><input th:field="*{riskList[__${itemStat.index}__].koncoweRyzyko}" /></td>
+
+        </tr>
+        </tbody>
+        <tfoot>
+        <button type="button" onclick="addFields()">Insert new row</button>
+        </tfoot>
+    </table>
+    </fieldset>
+</form>
+</body>
+
+<script th:inline="javascript">
+
+    function addFields()
+    {
+        document.getElementById("myTable").insertRow(-1).innerHTML =
+            '                <th><input type="text" th:field="*{typeOfWork}" /> </th>\n' +
+            '                <th><input type="text" th:field="*{typeOfThreat}" /> </th>\n' +
+            '                <th><input type="text" th:field="*{person}" /> </th>\n' +
+            '                <th><input type="text" th:field="*{initialRisk}" /> </th>\n' +
+            '                <th><input type="text" th:field="*{countermeasure}" /> </th>\n' +
+            '                <th><input type="text" th:field="*{finalRisk}" /> </th>';
+    }
+
+</script>
+</html>
