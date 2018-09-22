@@ -17,13 +17,14 @@ import java.util.List;
 
 @Controller
 public class WelcomeController {
+
     private List<Double> gasAmounts = new ArrayList<>();
     private List<Double> timesUnderWater = new ArrayList<>();
+
 
     @Autowired
     private DataColecting dataColecting;
     private EmailService emailService;
-    private RiskService riskService;
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profileForm(Model model) throws IOException, InvalidFormatException {
@@ -61,10 +62,12 @@ public class WelcomeController {
 
         return "result";
     }
+
+
     @GetMapping("/result")
     public String email(Model model) throws IOException, InvalidFormatException {
 
-        model.addAttribute("email", new Email());
+        //model.addAttribute("email", new Email());
 
 
         return "email";
@@ -74,7 +77,7 @@ public class WelcomeController {
     public String sendEmail(@ModelAttribute Email email, BindingResult errors, Model model) {
 
        // email.setContent( z sesji );
-        emailService.send(email);
+        //emailService.send(email);
        //model.addAttribute("address", address);
         return "email";
 
@@ -97,28 +100,56 @@ public class WelcomeController {
     }
 
     @GetMapping("/riskForm")
-    public String showCreateForm(@ModelAttribute RiskCreationDto riskCreationDto, Model model) {
-        RiskCreationDto risksForm = new RiskCreationDto();
+    public String showCreateRiskForm(@ModelAttribute RiskWrapper riskWrapper,Risk risk,  Model model) {
 
-        risksForm.addRisk(new Risk());
+        //Risk risk = new Risk();
+        //model.addAttribute("riskWrapper", new RiskWrapper());
 
 
-        model.addAttribute("form", risksForm);
+        riskWrapper.setRiskList(Arrays.asList(risk));
+        //riskWrapper.setRiskList(Arrays.asList(risk, new Risk()));
+
+        //model.addAttribute("riskWrapper", new RiskWrapper());
+        //model.addAttribute("risk", risk);
+
 
         return "riskForm";
     }
 
 
-    @PostMapping("/allRisks")
-    public String saveRisks() {
+    @PostMapping("/riskForm")
+    public String saveRisks(@ModelAttribute RiskWrapper riskWrapper, Risk risk, Model model) {
 
-        //riskService.saveAll(form.getRiskList());
+        //model.addAttribute("risk", new Risk());
+        //model.addAttribute("riskWrapper", new RiskWrapper());
 
-        //model.addAttribute("risk", riskService.findAll());
-
+        //riskWrapper.getRiskList().add(risk);
+        //model.addAttribute("riskList", riskList);
+        //riskList.add(risk);
 
         return "allRisks";
     }
+
+    @RequestMapping(value = "/riskForm", params = "addRow", method = RequestMethod.POST)
+    public String addRow(@ModelAttribute RiskWrapper riskWrapper, Risk risk, Model model) {
+
+            List<Risk> list = riskWrapper.getRiskList();
+
+            // dodaj pusty wpis do listy
+            list.add(new Risk());
+
+
+        riskWrapper.setRiskList((list));
+
+            //model.addAttribute("riskWrapper", new RiskWrapper());
+            //riskWrapper.getRiskList().add(risk);
+            ///model.addAttribute("riskList", riskList);
+            //riskList.add(risk);
+
+        return "redirect:/riskForm";
+    }
+
+
     @PostMapping("/calculations")
     public String handlePostRequest(@ModelAttribute GasAmount gasAmount ,TimeUnderWater timeUnderWater , BindingResult errors, Model model) {
         gasAmounts.clear();
@@ -138,6 +169,7 @@ public class WelcomeController {
 
         model.addAttribute("gasamount", new GasAmount());
         model.addAttribute("gasAmounts", gasAmounts);
+
         model.addAttribute("timeUnderWater", new TimeUnderWater());
         model.addAttribute("timesUnderWater", timesUnderWater);
 

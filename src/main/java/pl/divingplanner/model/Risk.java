@@ -2,21 +2,15 @@ package pl.divingplanner.model;
 
 public class Risk {
 
-    private long id;
-    private String etapPrac;
-    private String rodzajZagrozenia;
-    private String zagrozonaOsoba;
-    private String wstepneRyzyko;
-    private String przeciwdzialanie;
-    private String koncoweRyzyko;
 
-    public long getId() {
-        return id;
-    }
+    private String etapPrac = "";
+    private String rodzajZagrozenia= "";
+    private String zagrozonaOsoba= "";
+    private String wstepneRyzyko= "";
+    private String przeciwdzialanie= "";
+    private String koncoweRyzyko= "";
 
-    public void setId(long id) {
-        this.id = id;
-    }
+
     public String getEtapPrac() {
         return etapPrac;
     }
@@ -62,6 +56,18 @@ public class Risk {
     }
 
     public void setKoncoweRyzyko(String koncoweRyzyko) {
+        this.koncoweRyzyko = koncoweRyzyko;
+    }
+
+    public Risk() {
+    }
+
+    public Risk(String etapPrac, String rodzajZagrozenia, String zagrozonaOsoba, String wstepneRyzyko, String przeciwdzialanie, String koncoweRyzyko) {
+        this.etapPrac = etapPrac;
+        this.rodzajZagrozenia = rodzajZagrozenia;
+        this.zagrozonaOsoba = zagrozonaOsoba;
+        this.wstepneRyzyko = wstepneRyzyko;
+        this.przeciwdzialanie = przeciwdzialanie;
         this.koncoweRyzyko = koncoweRyzyko;
     }
 }
