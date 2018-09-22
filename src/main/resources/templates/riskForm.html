@@ -8,10 +8,8 @@
 <h2>Analiza ryzyka</h2>
 <form action="#" th:action="@{/riskForm}" th:object="${riskWrapper}"
       method="post">
-    <fieldset>
+
         <input type="submit" id="submitButton" th:value="Save"/>
-        <input type="reset" id="resetButton" name="reset" th:value="Reset"/>
-        <input type="submit"  name="addRow" value="addRow"/>
 
     <table class="dynatable" id="myTable">
         <thead>
@@ -36,10 +34,10 @@
 
         </tbody>
         <tfoot>
-        <input type="submit"  name="addRow" value="addRow"/>
+        <tr><input type="submit"  name="addRow" value="addRow"/></tr>
         </tfoot>
     </table>
-    </fieldset>
+
 </form>
 </body>
 

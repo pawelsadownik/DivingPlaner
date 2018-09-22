@@ -102,16 +102,7 @@ public class WelcomeController {
     @GetMapping("/riskForm")
     public String showCreateRiskForm(@ModelAttribute RiskWrapper riskWrapper,Risk risk,  Model model) {
 
-        //Risk risk = new Risk();
-        //model.addAttribute("riskWrapper", new RiskWrapper());
-
-
         riskWrapper.setRiskList(Arrays.asList(risk));
-        //riskWrapper.setRiskList(Arrays.asList(risk, new Risk()));
-
-        //model.addAttribute("riskWrapper", new RiskWrapper());
-        //model.addAttribute("risk", risk);
-
 
         return "riskForm";
     }
@@ -120,33 +111,19 @@ public class WelcomeController {
     @PostMapping("/riskForm")
     public String saveRisks(@ModelAttribute RiskWrapper riskWrapper, Risk risk, Model model) {
 
-        //model.addAttribute("risk", new Risk());
-        //model.addAttribute("riskWrapper", new RiskWrapper());
-
-        //riskWrapper.getRiskList().add(risk);
-        //model.addAttribute("riskList", riskList);
-        //riskList.add(risk);
-
         return "allRisks";
     }
 
-    @RequestMapping(value = "/riskForm", params = "addRow", method = RequestMethod.POST)
+    @PostMapping(value = "/riskForm", params = "addRow")
     public String addRow(@ModelAttribute RiskWrapper riskWrapper, Risk risk, Model model) {
 
             List<Risk> list = riskWrapper.getRiskList();
-
-            // dodaj pusty wpis do listy
+            
             list.add(new Risk());
 
+            riskWrapper.setRiskList((list));
 
-        riskWrapper.setRiskList((list));
-
-            //model.addAttribute("riskWrapper", new RiskWrapper());
-            //riskWrapper.getRiskList().add(risk);
-            ///model.addAttribute("riskList", riskList);
-            //riskList.add(risk);
-
-        return "redirect:/riskForm";
+        return "riskForm";
     }
 
 
