@@ -13,21 +13,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <table class="table">
 
-                <tbody>
-<!--
-                <tr>
-                    <td><span th:text="${risk.etapPrac}"></span></td>
-                    <td><span th:text="${risk.rodzajZagrozenia}"></span></td>
-                    <td><span th:text="${risk.zagrozonaOsoba}"></span></td>
-                    <td><span th:text="${risk.wstepneRyzyko}"></span></td>
-                    <td><span th:text="${risk.przeciwdzialanie}"></span></td>
-                    <td><span th:text="${risk.koncoweRyzyko}"></span></td>
-                </tr>
--->
-
-                </tbody>
 
             <table th:object="${riskWrapper}" id="userTable" border="1">
                 <thead>
@@ -49,13 +35,25 @@
                     <td><input th:field="*{riskList[__${status.index}__].koncoweRyzyko}"/></td>
                 </tr>
             </table>
-            </table>
+
         </div>
     </div>
 </div>
-<!--
+<h2>Podjete srodki bezpieczenstwa</h2>
+<table th:object="${divingPlanWrapper}" id="userTable2" border="1">
+    <thead>
+    <tr>
+        <td>Podjete srodki bezpieczenstwa</td>
 
--->
+    </tr>
+    </thead>
+    <tr th:each="divingPlanList, status : ${divingPlanWrapper.divingPlanList}">
+        <td><input th:field="*{divingPlanList[__${status.index}__].security}"/></td>
+
+    </tr>
+</table>
+</div>
+
 
 </body>
 </html>

@@ -6,12 +6,12 @@
 </head>
 <body>
 <h2>Analiza ryzyka</h2>
-<form action="#" th:action="@{/riskForm}" th:object="${riskWrapper}"
+<form action="#" th:action="@{/riskForm}"
       method="post">
 
         <input type="submit" id="submitButton" th:value="Save"/>
 
-    <table class="dynatable" id="myTable">
+    <table class="dynatable" id="myTable" th:object="${riskWrapper}">
         <thead>
         <tr>
             <th>Etap prac</th>
@@ -24,7 +24,7 @@
         </thead>
         <tbody>
         <tr th:each="risk, status : ${riskWrapper.riskList}">
-            <td><input th:field="*{riskList[__${status.index}__].etapPrac}"/></td>
+            <td><input th:field="*{riskList[__${status.index}__].etapPrac}" /></td>
             <td><input th:field="*{riskList[__${status.index}__].rodzajZagrozenia}"/></td>
             <td><input th:field="*{riskList[__${status.index}__].zagrozonaOsoba}"/></td>
             <td><input th:field="*{riskList[__${status.index}__].wstepneRyzyko}"/></td>
@@ -34,11 +34,21 @@
 
         </tbody>
         <tfoot>
-        <tr><input type="submit"  name="addRow" value="addRow"/></tr>
+        <tr></tr>
         </tfoot>
     </table>
+    <input type="submit"  name="addRow" value="addRow"/>
+    <table class="dynatable" id="myTable" th:object="${divingPlanWrapper}">
 
+    <tr th:each="sec, status : ${divingPlanWrapper.divingPlanList}">
+        <td><input th:field="*{divingPlanList[__${status.index}__].security}" /></td>
+    </tr>
+    </table>
+    <input type="submit"  name="addSec" value="addSec"/>
 </form>
+
+
+
 </body>
 
 

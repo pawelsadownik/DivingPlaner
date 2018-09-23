@@ -100,25 +100,26 @@ public class WelcomeController {
     }
 
     @GetMapping("/riskForm")
-    public String showCreateRiskForm(@ModelAttribute RiskWrapper riskWrapper,Risk risk,  Model model) {
+    public String showCreateRiskForm(@ModelAttribute RiskWrapper riskWrapper,DivingPlanWrapper divingPlanWrapper,BindingResult errors,Risk risk,DivingPlan divingPlan,  Model model) {
 
         riskWrapper.setRiskList(Arrays.asList(risk));
+        divingPlanWrapper.setDivingPlanList(Arrays.asList(divingPlan));
 
         return "riskForm";
     }
 
 
     @PostMapping("/riskForm")
-    public String saveRisks(@ModelAttribute RiskWrapper riskWrapper, Risk risk, Model model) {
+    public String saveRisks(@ModelAttribute RiskWrapper riskWrapper, DivingPlanWrapper divingPlanWrapper, Risk risk,BindingResult errors,DivingPlan divingPlan, Model model) {
 
         return "allRisks";
     }
 
     @PostMapping(value = "/riskForm", params = "addRow")
-    public String addRow(@ModelAttribute RiskWrapper riskWrapper, Risk risk, Model model) {
+    public String addRow(@ModelAttribute RiskWrapper riskWrapper, DivingPlanWrapper divingPlanWrapper,  Risk risk, Model model) {
 
             List<Risk> list = riskWrapper.getRiskList();
-            
+
             list.add(new Risk());
 
             riskWrapper.setRiskList((list));
@@ -126,6 +127,17 @@ public class WelcomeController {
         return "riskForm";
     }
 
+    @PostMapping(value = "/riskForm", params = "addSec")
+    public String addSec(@ModelAttribute DivingPlanWrapper divingPlanWrapper, RiskWrapper riskWrapper, DivingPlan divingPlan,BindingResult errors, Model model) {
+
+        List<DivingPlan> list = divingPlanWrapper.getDivingPlanList();
+
+        list.add(new DivingPlan());
+
+        divingPlanWrapper.setDivingPlanList((list));
+
+        return "riskForm";
+    }
 
     @PostMapping("/calculations")
     public String handlePostRequest(@ModelAttribute GasAmount gasAmount ,TimeUnderWater timeUnderWater , BindingResult errors, Model model) {
