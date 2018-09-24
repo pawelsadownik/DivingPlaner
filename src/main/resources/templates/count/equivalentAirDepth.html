@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/count/equivalentAirDepth}" th:object="${equivalentAirDepth}" method="post">
+    <p>Depth [m]: <input type="text" th:field="*{depth}" /></p>
+    <p>Fraction of Nitrogen[0, ...]: <input type="text" th:field="*{nitroFraction}" /></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+<h3>EAD =
+    <td>
+        <span th:unless="${EAD == 0.0}"><span th:text="${EAD}"></span>[m] </span>
+    </td>
+</h3>
+
+</body>
+</html>

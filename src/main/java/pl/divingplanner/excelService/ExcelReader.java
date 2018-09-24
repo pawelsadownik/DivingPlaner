@@ -1,7 +1,7 @@
-package pl.divingplanner.excelservice;
+package pl.divingplanner.excelService;
 
 import org.springframework.stereotype.Service;
-import pl.divingplanner.controller.EmailService;
+import pl.divingplanner.emailService.EmailService;
 import pl.divingplanner.model.DivingProces;
 import pl.divingplanner.model.Email;
 import pl.divingplanner.model.Profile;
@@ -9,7 +9,6 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import pl.divingplanner.controller.WelcomeController;
 
 import java.io.File;
 import java.io.IOException;

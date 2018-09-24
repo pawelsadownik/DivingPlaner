@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/count/timeToVent}" th:object="${timeToFirstVent}" method="post">
+    <p>Chamber volume [dm3]: <input type="text" th:field="*{chamberVolume}" /></p>
+    <p>Number of divers: <input type="text" th:field="*{amountOfDivers}" /></p>
+    <p>CO2 production: <input type="text" th:field="*{co2Production}" /></p>
+    <p>MAX Partial Pressure of CO2 <input type="text" th:field="*{maxPartialPressureCO2}" /></p>
+    <p>Initial Partial Pressure of CO2 <input type="text" th:field="*{beginPartialPressureCO2}" /></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+<h3>Time to first ventilation =
+    <td>
+        <span th:unless="${timeToVent == 0.0}"><span th:text="${timeToVent}"></span>[min] </span>
+    </td>
+</h3>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/count/ventilationStream}" th:object="${ventilationStream}" method="post">
+    <p>Number of divers: <input type="text" th:field="*{amountOfDivers}" /></p>
+    <p>CO2 production: <input type="text" th:field="*{co2Production}" /></p>
+    <p>Absolute Pressure <input type="text" th:field="*{absolutePressure}" /></p>
+    <p>Max Partial Pressure of CO2<input type="text" th:field="*{co2MaxPartialPressure}" /></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+<h3>Ventilation Stream =
+    <td>
+        <span th:unless="${ventStream == 0.0}"><span th:text="${ventStream}"></span>[l/min] </span>
+    </td>
+</h3>
+
+</body>
+</html>

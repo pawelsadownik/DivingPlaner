@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/count/partialPressure}" th:object="${partialPressure}" method="post">
+    <p>Fraction [0, ...]: <input type="text" th:field="*{fraction}" /></p>
+    <p>Depth [m]: <input type="text" th:field="*{depth}" /></p>
+    <p><input type="submit" name="countPartialPressure" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<h3>Partial Pressure =
+    <td>
+        <span th:unless="${pPressure== 0.0}"><span th:text="${pPressure}"></span>[bar] </span>
+    </td>
+</h3>
+
+
+<form action="#" th:action="@{/count/partialPressure}" th:object="${partialPressure}" method="post">
+    <p>Partial Pressure[bar]: <input type="text" th:field="*{partialPressure}" /></p>
+    <p>Depth [m]: <input type="text" th:field="*{depth}" /></p>
+    <p><input type="submit" name="countFraction" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<h3>Fraction =
+    <td>
+        <span th:unless="${fraction == 0.0}"><span th:text="${fraction}"></span>[] </span>
+    </td>
+</h3>
+
+
+<form action="#" th:action="@{/count/partialPressure}" th:object="${partialPressure}" method="post">
+    <p>Partial Pressure[bar]: <input type="text" th:field="*{partialPressure}" /></p>
+    <p>Fraction [0, ...]: <input type="text" th:field="*{fraction}" /></p>
+    <p><input type="submit" name="countDepth" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<h3>Depth =
+    <td>
+        <span th:unless="${depth == 0.0}"><span th:text="${depth}"></span>[m] </span>
+    </td>
+</h3>
+</body>
+</html>

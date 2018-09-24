@@ -30,8 +30,8 @@ public class MaximumOperationalDepth {
         this.partialPressure = partialPressure;
     }
 
-    public double countMOD (double fraction, double partialPressure){
+    public double countMOD (MaximumOperationalDepth maximumOperationalDepth){
 
-        return (10*partialPressure)/fraction;
+        return (10*maximumOperationalDepth.getPartialPressure())/maximumOperationalDepth.getFraction();
     }
 }

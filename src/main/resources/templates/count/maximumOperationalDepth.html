@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/count/maximumOperationalDepth}" th:object="${maximumOperationalDepth}" method="post">
+    <p>Fraction [0, ...]: <input type="text" th:field="*{fraction}" /></p>
+    <p>Partial pressure [bar]: <input type="text" th:field="*{partialPressure}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<h3>MOD =
+    <td>
+        <span th:unless="${maxOperationalDepth == 0.0}"><span th:text="${maxOperationalDepth}"></span>[m] </span>
+    </td>
+</h3>
+
+</body>
+</html>

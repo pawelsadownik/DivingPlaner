@@ -6,6 +6,8 @@ public class EquivalentAirDepth {
 
     int depth;
 
+    double EAD;
+
     public int getDepth() {
         return depth;
     }
@@ -22,10 +24,19 @@ public class EquivalentAirDepth {
         this.nitroFraction = nitroFraction;
     }
 
+    public double getEAD() {
+        return EAD;
+    }
+
+    public void setEAD(double EAD) {
+        this.EAD = EAD;
+    }
+
     public EquivalentAirDepth() {
     }
 
-    public EquivalentAirDepth(int depth) {
+    public EquivalentAirDepth(double nitroFraction, int depth) {
+        this.nitroFraction = nitroFraction;
         this.depth = depth;
     }
 

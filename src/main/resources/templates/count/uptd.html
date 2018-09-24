@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/count/uptd}" th:object="${uptd}" method="post">
+    <p>Oxygen Pressure [bar]: <input type="text" th:field="*{oxygenPressure}" /></p>
+
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<h3>UPTD =
+    <td>
+            <span th:unless="${unitptd== 0.0}"><span th:text="${unitptd}"></span>[/min] </span>
+    </td>
+</h3>
+
+
+</body>
+</html>

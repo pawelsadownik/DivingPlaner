@@ -1,4 +1,4 @@
-package pl.divingplanner.controller;
+package pl.divingplanner.emailService;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;

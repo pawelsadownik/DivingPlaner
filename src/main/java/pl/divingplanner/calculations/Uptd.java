@@ -2,22 +2,15 @@ package pl.divingplanner.calculations;
 
 public class Uptd {
 
-    int oxygenMinutes;
     double oxygenPressure;
-
-    public int getOxygenMinutes() {
-        return oxygenMinutes;
-    }
-
-    public void setOxygenMinutes(int oxygenMinutes) {
-        this.oxygenMinutes = oxygenMinutes;
-    }
 
     public double getOxygenPressure() {
         return oxygenPressure;
     }
 
+    public Uptd(){
 
+    }
     public Uptd(double oxygenPressure) {
         this.oxygenPressure = oxygenPressure;
     }
@@ -26,13 +19,10 @@ public class Uptd {
         this.oxygenPressure = oxygenPressure;
     }
 
-    public double countUptd(double oxygenPressure){
+    public double countUptd(Uptd uptd){
 
-        return Math.pow(((oxygenPressure -0.5)/0.5), 0.83);
+        return Math.pow(((uptd.getOxygenPressure() -0.5)/0.5), 0.83);
     }
 
-    public double countCptd(double uptd, int oxygenMinutes){
 
-        return oxygenMinutes*uptd;
-    }
 }

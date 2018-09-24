@@ -1,4 +1,4 @@
-package pl.divingplanner.excelservice;
+package pl.divingplanner.excelService;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,35 +1,23 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
 
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
 <body>
+<div>
+    <form>
+        <input type="button" value="COUNTING GAS AMOUNT" onclick="window.location.href='/count/gasAmount'" /><br>
+        <input type="button" value="COUNTING EAD" onclick="window.location.href='/count/equivalentAirDepth'" /><br>
+        <input type="button" value="COUNTING MOD" onclick="window.location.href='/count/maximumOperationalDepth'" /><br>
+        <input type="button" value="COUNTING PARTIAL PRESSURE" onclick="window.location.href='/count/partialPressure'" /><br>
+        <input type="button" value="COUNTING TIME TO FIRST VENTILATION" onclick="window.location.href='/count/timeToVent'" /><br>
+        <input type="button" value="COUNTING UPTD" onclick="window.location.href='/count/uptd'" /><br>
+        <input type="button" value="COUNTING SAFE TIME UNDERWATER" onclick="window.location.href='/count/timeUnderwater'" /><br>
+        <input type="button" value="COUNTING VENTILATION STREAM" onclick="window.location.href='/count/ventilationStream'" /><br>
+    </form>
 
-<h3>GAS AMOUNT:</h3>
-<form action="#" th:action="@{/calculations}" th:object="${gasamount}" method="post">
-    <p>Tank Volume: <input type="text" th:field="*{tankVolume}" /></p>
-    <p>Pressure: <input type="text" th:field="*{pressure}" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form>
-<h3>Result:
-<span th:each="gasAmount : ${gasAmounts}">
-    <span th:text="${gasAmount}"></span>
-    </span>
-</h3>
-<br>
-<br>
-
-<h3>TIME UNDERWATER:</h3>
-<form action="#" th:action="@{/calculations}" th:object="${timeUnderWater}" method="post">
-    <p>SAC: <input type="text" th:field="*{surfaceAirConsuption}" /></p>
-    <p>Absolute Pressure: <input type="text" th:field="*{absolutePressure}" /></p>
-    <p>Tank Volume: <input type="text" th:field="*{tankVolume}" /> </p>
-    <p>Tank Pressure (-50 if needed): <input type="text" th:field="*{tankPressure}" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form>
-<h3>Result:
-    <span th:each="timeUnderWater : ${timesUnderWater}">
-    <span th:text="${timeUnderWater}"></span>
-    </span>
-</h3>
+</div>
 </body>
 </html>

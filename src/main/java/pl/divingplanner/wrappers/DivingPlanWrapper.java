@@ -1,4 +1,4 @@
-package pl.divingplanner.controller;
+package pl.divingplanner.wrappers;
 
 import pl.divingplanner.model.DivingPlan;
 

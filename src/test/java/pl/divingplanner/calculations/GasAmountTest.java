@@ -1,8 +1,6 @@
 package pl.divingplanner.calculations;
 
 import org.junit.Test;
-import pl.divingplanner.excelservice.ExcelReader;
-import pl.divingplanner.model.Profile;
 
 import static org.junit.Assert.*;
 
