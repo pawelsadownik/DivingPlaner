@@ -20,6 +20,10 @@ public class DivingProces {
 
     public static List<Integer> depthStopsList = new ArrayList<>();
 
+    public static List<Integer> timeStopsListBreak = new ArrayList();
+    public static List<Integer> depthStopsListBreak = new ArrayList<>();
+
+
     public int getWorkingTime() {
 
         return workingTime;
@@ -46,5 +50,19 @@ public class DivingProces {
         this.depthStopsList = depthStopsList;
     }
 
+    public static List<Integer> getTimeStopsListBreak() {
+        return timeStopsListBreak;
+    }
 
+    public static void setTimeStopsListBreak(List<Integer> timeStopsListBreak) {
+        DivingProces.timeStopsListBreak = timeStopsListBreak;
+    }
+
+    public static List<Integer> getDepthStopsListBreak() {
+        return depthStopsListBreak;
+    }
+
+    public static void setDepthStopsListBreak(List<Integer> depthStopsListBreak) {
+        DivingProces.depthStopsListBreak = depthStopsListBreak;
+    }
 }

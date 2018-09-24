@@ -1,6 +1,7 @@
 package pl.divingplanner.excelService;
 
 import org.springframework.stereotype.Service;
+import pl.divingplanner.controllers.WelcomeController;
 import pl.divingplanner.emailService.EmailService;
 import pl.divingplanner.model.DivingProces;
 import pl.divingplanner.model.Email;
@@ -25,6 +26,12 @@ public class ExcelReader {
     @Autowired
     private EmailService emailService;
     private Email email;
+    private boolean contain = false;
+
+    private int counterBreak;
+
+    public ExcelReader() {
+    }
 
     @Autowired
     public ExcelReader(@Value("${xlsx.file}") String sampleXlsxFile) throws IOException, InvalidFormatException {
@@ -70,7 +77,6 @@ public class ExcelReader {
 
         DataFormatter dataFormatter = new DataFormatter();
 
-
         Row rowStops = sheet.getRow(rowIndexForProfile);
 
         int counter = COUNTER;
@@ -98,7 +104,7 @@ public class ExcelReader {
 
         DivingProces divingProces = new DivingProces();
 
-        //Ustawienie listy glebokosci
+        //Ustawienie listy glebokosci dla podstawowego profilu
 
         divingProces.getDepthStopsList().add(0);
         divingProces.getDepthStopsList().add(profile.getDepth());
@@ -106,19 +112,52 @@ public class ExcelReader {
         divingProces.getDepthStopsList().add(keyList.get(0));
         divingProces.getDepthStopsList().addAll(keyList);
 
-        //Ustawienie listy czasu
+        //Ustawienie listy czasu dla podstawowego profilu
         List<String> listStrings = new ArrayList<>(profile.getDepthStopTime().values());
-        List<String> tempList = new ArrayList<>();
 
+        List<String> tempList = new ArrayList<>();
+        List<String> tempListBreak = new ArrayList<>();
 
         for (int i = 0; i < listStrings.size(); i++) {
             String[] output = listStrings.get(i).split("\\(");
             tempList.add(output[0]);
+            if(output.length>1) {
+                if (output[1].contains("*")) {
+                   counterBreak=i;
+
+                    divingProces.getDepthStopsListBreak().add(0);
+                    divingProces.getDepthStopsListBreak().add(profile.getDepth());
+                    divingProces.getDepthStopsListBreak().add(profile.getDepth());
+                    divingProces.getDepthStopsListBreak().add(keyList.get(0));
+                    divingProces.getDepthStopsListBreak().add(keyList.get(0));
+
+                    divingProces.getTimeStopsListBreak().add(0);
+                    divingProces.getTimeStopsListBreak().add(profile.getDescendTime());
+                    divingProces.getTimeStopsListBreak().add(divingProces.getWorkingTime());
+                    divingProces.getTimeStopsListBreak().add(profile.getAscendTime());
+
+                    divingProces.getDepthStopsListBreak().add(0);
+                    divingProces.getDepthStopsListBreak().add(keyList.get(0));
+                    divingProces.getDepthStopsListBreak().addAll(keyList);
+
+                    divingProces.getTimeStopsListBreak().add(5);
+                    divingProces.getTimeStopsListBreak().add(10);
+
+
+                }
+            }
         }
 
+        for(int i=counterBreak; i<listStrings.size(); i++){
+            tempListBreak.add(tempList.get(i));
+        }
+
+        for (String current : tempListBreak) {
+            divingProces.getTimeStopsListBreak().add(Integer.parseInt(current));
+        }
+
+        //Zapis listy czasow
         List<Integer> listTimes = new ArrayList<Integer>(listStrings.size());
-
-
 
         divingProces.setWorkingTime(profile.getOveralTime()-profile.getDescendTime());
 
@@ -133,8 +172,13 @@ public class ExcelReader {
         }
         divingProces.getDepthStopsList().add(0);
         listTimes.add(3);
-
         divingProces.setTimeStopsList(listTimes);
+
+        divingProces.getDepthStopsListBreak().add(0);
+        divingProces.getTimeStopsListBreak().add(3);
+
+        WelcomeController welcomeController = new WelcomeController();
+        welcomeController.setcBreak(counterBreak);
 
         return profile.getDepthStopTime();
     }

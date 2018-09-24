@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.divingplanner.excelService.ExcelReader;
 import pl.divingplanner.model.*;
 import pl.divingplanner.wrappers.DivingPlanWrapper;
 import pl.divingplanner.wrappers.RiskWrapper;
@@ -25,6 +26,14 @@ public class WelcomeController {
     private DataColecting dataColecting;
     private EmailService emailService;
 
+    private int cBreak;
+
+    public int getcBreak() {
+        return cBreak;
+    }
+
+
+
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profileForm(Model model) throws IOException, InvalidFormatException {
         model.addAttribute("profile", new Profile());
@@ -33,13 +42,15 @@ public class WelcomeController {
     }
 
     @PostMapping("/profile")
-    public String getProfile(@ModelAttribute Profile profile, BindingResult errors, Model model) throws IOException, InvalidFormatException {
-
+    public String getProfile(@ModelAttribute Profile profile, ExcelReader excelReader, BindingResult errors, Model model) throws IOException, InvalidFormatException {
 
         DivingProces divingProces = new DivingProces();
 
         divingProces.depthStopsList.clear();
         divingProces.timeStopsList.clear();
+
+        divingProces.depthStopsListBreak.clear();
+        divingProces.timeStopsListBreak.clear();
 
         dataColecting.getStopsByDeapth(profile);
 
@@ -47,11 +58,23 @@ public class WelcomeController {
 
         List<Integer> depth = new LinkedList<>(divingProces.getDepthStopsList());
 
+        List<Integer> timeBreak = new LinkedList<>(divingProces.getTimeStopsListBreak());
+
+        List<Integer> depthBreak = new LinkedList<>(divingProces.getDepthStopsListBreak());
+
+        cBreak = getcBreak();
+
         //do wsyswietlenia wynikow na result
 
         model.addAttribute("time", time);
 
         model.addAttribute("depth", depth);
+
+        model.addAttribute("timeBreak", timeBreak);
+
+        model.addAttribute("depthBreak", depthBreak);
+
+        model.addAttribute("cBreak", cBreak);
 
         Email email = new Email();
 
