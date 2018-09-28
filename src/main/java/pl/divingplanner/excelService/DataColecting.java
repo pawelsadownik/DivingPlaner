@@ -20,6 +20,8 @@ public class DataColecting  {
 
     public Map<Integer, String> getStopsByDeapth(Profile profile) throws IOException, InvalidFormatException {
         int rowIndexForProfile = reader.getRowIndex(profile);
+
+
         return reader.getDepthStopTime(rowIndexForProfile, profile);
     }
 }

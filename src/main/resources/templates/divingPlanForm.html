@@ -31,13 +31,7 @@
 
     <div th:object="${divingPlan}">
         <p>Cel prac podwodnych </p>
-        <textarea id="Purposet" cols="200" rows="4" th:value="null" th:field="*{purpose}" placeholder="(Wprowadz cel prac podwodnych)"> </textarea>
-    </div>
-
-
-    <div th:object="${divingPlan}">
-        <p>Podjęte środki bezpieczeństwa: </p>
-        <p>Inne: <input type="text" th:field="*{security}" /></p>
+        <textarea id="Purpose" cols="200" rows="4" th:value="null" th:field="*{purpose}" placeholder="(Wprowadz cel prac podwodnych)"> </textarea>
     </div>
 
     <div th:object="${divingPlan}">

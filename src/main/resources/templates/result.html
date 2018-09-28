@@ -27,17 +27,13 @@
         <p><input type="submit" value="SEND EMAIL" /> </p>
     </form>
     <p></p>
-    <a href="/divingPlanForm">CREATE DIVING PLAN</a>
+    <a href="/divingPlanForm">CREATE DIVING PLAN</a><br>
+    <a href="/profile">Submit another profile</a><br>
+    <a href="/riskForm">RISK</a><br>
 
 
     <div class="container">
-        <h2 align="center">Dekompresja:</h2>
-
-        <div id="container"
-             style="width: 550px; height: 400px; margin: 0 auto"></div>
-
-
-    </div>
+        <h2 align="center"></h2>
     <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
@@ -45,53 +41,82 @@
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <canvas id="myChart"></canvas>
+        <canvas id="myChart2"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script th:inline="javascript">
-        $(function(){
-            Highcharts.chart('container', {
-                title:{
+        var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+    // The data for our dataset
+    data: {
+    labels: [[${time}]],
+    datasets: [{
+    label: "DEKOMPRESJA",
+    backgroundColor: 'rgb(40, 66, 131)',
+    borderColor: 'rgb(40, 66, 131)',
+    data:
+        [[${depth}]],
 
-                    text:''
-                },
-                subtitle: {
-                    text: 'source: Tabele dekompresji i rekopresji nurków MW'
-                },
-                xAxis: {
-                    categories: [[${time}]],
-                    crosshair: true
-                },
-                yAxis: {
-                    reversed: true,
-                    min: 0,
-                    title: {
-                        text: 'DEPTH [meters]'
-                    }
-                },
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} K</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.2,
-                        borderWidth: 10
-                    }
-                },
-                series: [{
-                    name: 'TIME [minutes]',
-                    data: [[${depth}]]
-                }]
-            });
-        });
-    </script>
+
+    }]
+    },
+
+    // Configuration options go here
+    options: {
+        elements: {
+            line: {
+                tension: 0, // disables bezier curves
+            }
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    reverse: true,
+                }
+            }]
+        }
+    }
+    });
+</script>
     <div class="container2">
             <td>
-                <span th:unless="${cBreak == 0}"><h2 align="center">Dekompresja przerywana:</h2>
-                <div id="container2"
-                     style="width: 550px; height: 400px; margin: 0 auto"></div>
+                <span th:unless="${profile.counterBreak == false}"><h2 align="center"></h2>
+                <script th:inline="javascript">
+            var ctx = document.getElementById('myChart2').getContext('2d');
+            var chart = new Chart(ctx, {
+
+                // The type of chart we want to create
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: [[${timeBreak}]],
+                    datasets: [{
+                        label: "DEKOMPRESJA PRZERYWANA",
+                        backgroundColor: 'rgb(40, 66, 131)',
+                        borderColor: 'rgb(40, 66, 131)',
+                        data:
+                            [[${depthBreak}]],
+                    }]
+                },
+                // Configuration options go here
+                options: {
+                    elements: {
+                        line: {
+                            tension: 0, // disables bezier curves
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                reverse: true,
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
 
                 </span>
             </td>
@@ -99,52 +124,9 @@
 </div>
 
 
-    <script th:inline="javascript">
-        $(function(){
-            Highcharts.chart('container2', {
-                title:{
-
-                    text:''
-                },
-                subtitle: {
-                    text: 'source: Tabele dekompresji i rekopresji nurków MW'
-                },
-                xAxis: {
-                    categories: [[${timeBreak}]],
-                    crosshair: true
-                },
-                yAxis: {
-                    reversed: true,
-                    min: 0,
-                    title: {
-                        text: 'DEPTH [meters]'
-                    }
-                },
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} K</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.2,
-                        borderWidth: 10
-                    }
-                },
-                series: [{
-                    name: 'TIME [minutes]',
-                    data: [[${depthBreak}]]
-                }]
-            });
-        });
-    </script>
-    <a href="/profile">Submit another profile</a>
-    <a href="/riskForm">RISK</a>
 
 
+</div>
 </div>
 
 

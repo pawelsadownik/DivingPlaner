@@ -24,15 +24,18 @@ public class Profile {
 
     private int descendTime;
 
+    private boolean counterBreak;
+
     public Profile() {
 
     }
 
-    public Profile(int depth, int overalTime, Map<Integer, String> depthStopTime) throws IOException, InvalidFormatException {
+    public Profile(int depth, int overalTime, Map<Integer, String> depthStopTime, boolean counterBreak) throws IOException, InvalidFormatException {
         super();
         this.depth = depth;
         this.overalTime = overalTime;
         this.depthStopTime = depthStopTime;
+        this.counterBreak = counterBreak;
     }
 
     public int getAscendSpeed() {
@@ -84,5 +87,11 @@ public class Profile {
         this.depthStopTime = depthStopTime;
     }
 
+    public boolean getCounterBreak() {
+        return counterBreak;
+    }
 
+    public void setCounterBreak(boolean counterBreak) {
+        this.counterBreak = counterBreak;
+    }
 }

@@ -26,9 +26,8 @@ public class ExcelReader {
     @Autowired
     private EmailService emailService;
     private Email email;
-    private boolean contain = false;
 
-    private int counterBreak;
+    int countBreak;
 
     public ExcelReader() {
     }
@@ -97,9 +96,11 @@ public class ExcelReader {
 
         List<Integer> keyList = new ArrayList(profile.getDepthStopTime().keySet());
 
+        if (keyList.size()==0) {
+            keyList.add(0);
+        }
 
         profile.setAscendSpeed((profile.getDepth() - keyList.get(0)) / profile.getAscendTime());
-
         profile.setDescendTime(1);
 
         DivingProces divingProces = new DivingProces();
@@ -110,20 +111,24 @@ public class ExcelReader {
         divingProces.getDepthStopsList().add(profile.getDepth());
         divingProces.getDepthStopsList().add(profile.getDepth());
         divingProces.getDepthStopsList().add(keyList.get(0));
-        divingProces.getDepthStopsList().addAll(keyList);
-
+        if(keyList.get(0)!=0) {
+            divingProces.getDepthStopsList().addAll(keyList);
+        }
         //Ustawienie listy czasu dla podstawowego profilu
         List<String> listStrings = new ArrayList<>(profile.getDepthStopTime().values());
 
         List<String> tempList = new ArrayList<>();
         List<String> tempListBreak = new ArrayList<>();
 
+
+
         for (int i = 0; i < listStrings.size(); i++) {
             String[] output = listStrings.get(i).split("\\(");
             tempList.add(output[0]);
             if(output.length>1) {
                 if (output[1].contains("*")) {
-                   counterBreak=i;
+                   countBreak=i;
+                   profile.setCounterBreak(true);
 
                     divingProces.getDepthStopsListBreak().add(0);
                     divingProces.getDepthStopsListBreak().add(profile.getDepth());
@@ -148,7 +153,9 @@ public class ExcelReader {
             }
         }
 
-        for(int i=counterBreak; i<listStrings.size(); i++){
+       // divingProces.setCounterBreak(countBreak);
+
+        for(int i=countBreak; i<listStrings.size(); i++){
             tempListBreak.add(tempList.get(i));
         }
 
@@ -170,15 +177,14 @@ public class ExcelReader {
         for (String current : tempList) {
             listTimes.add(Integer.parseInt(current));
         }
-        divingProces.getDepthStopsList().add(0);
-        listTimes.add(3);
+        if(keyList.get(0)!=0) {
+            divingProces.getDepthStopsList().add(0);
+            listTimes.add(3);
+        }
         divingProces.setTimeStopsList(listTimes);
 
         divingProces.getDepthStopsListBreak().add(0);
         divingProces.getTimeStopsListBreak().add(3);
-
-        WelcomeController welcomeController = new WelcomeController();
-        welcomeController.setcBreak(counterBreak);
 
         return profile.getDepthStopTime();
     }

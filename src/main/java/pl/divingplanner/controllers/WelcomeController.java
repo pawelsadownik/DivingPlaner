@@ -1,7 +1,7 @@
 package pl.divingplanner.controllers;
 
-import pl.divingplanner.calculations.GasAmount;
-import pl.divingplanner.calculations.TimeUnderWater;
+
+import org.springframework.web.servlet.view.RedirectView;
 import pl.divingplanner.emailService.EmailService;
 import pl.divingplanner.excelService.DataColecting;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -12,9 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.divingplanner.excelService.ExcelReader;
 import pl.divingplanner.model.*;
-import pl.divingplanner.wrappers.DivingPlanWrapper;
-import pl.divingplanner.wrappers.RiskWrapper;
-
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
@@ -26,14 +23,6 @@ public class WelcomeController {
     private DataColecting dataColecting;
     private EmailService emailService;
 
-    private int cBreak;
-
-    public int getcBreak() {
-        return cBreak;
-    }
-
-
-
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profileForm(Model model) throws IOException, InvalidFormatException {
         model.addAttribute("profile", new Profile());
@@ -42,55 +31,39 @@ public class WelcomeController {
     }
 
     @PostMapping("/profile")
-    public String getProfile(@ModelAttribute Profile profile, ExcelReader excelReader, BindingResult errors, Model model) throws IOException, InvalidFormatException {
+    public String getProfile(@ModelAttribute Profile profile, BindingResult errors, Model model) throws IOException, InvalidFormatException {
 
         DivingProces divingProces = new DivingProces();
+        ExcelReader excelReader = new ExcelReader();
 
         divingProces.depthStopsList.clear();
         divingProces.timeStopsList.clear();
-
         divingProces.depthStopsListBreak.clear();
         divingProces.timeStopsListBreak.clear();
 
         dataColecting.getStopsByDeapth(profile);
 
-        List<Integer> time = new LinkedList<>(divingProces.getTimeStopsList());
+        List<Integer> time = new LinkedList<>();
+        int sum=0;
+        for (int i=0;i<divingProces.getTimeStopsList().size();i++){
+            sum = sum + divingProces.getTimeStopsList().get(i);
+            time.add(sum);
+        }
 
         List<Integer> depth = new LinkedList<>(divingProces.getDepthStopsList());
-
         List<Integer> timeBreak = new LinkedList<>(divingProces.getTimeStopsListBreak());
-
         List<Integer> depthBreak = new LinkedList<>(divingProces.getDepthStopsListBreak());
 
-        cBreak = getcBreak();
-
-        //do wsyswietlenia wynikow na result
-
         model.addAttribute("time", time);
-
         model.addAttribute("depth", depth);
-
         model.addAttribute("timeBreak", timeBreak);
-
         model.addAttribute("depthBreak", depthBreak);
-
-        model.addAttribute("cBreak", cBreak);
 
         Email email = new Email();
 
         model.addAttribute("email", email);
 
         return "result";
-    }
-
-
-    @GetMapping("/result")
-    public String email(Model model) throws IOException, InvalidFormatException {
-
-        //model.addAttribute("email", new Email());
-
-
-        return "email";
     }
 
     @PostMapping("/sendEmail")

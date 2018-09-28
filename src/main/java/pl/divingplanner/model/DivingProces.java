@@ -21,11 +21,11 @@ public class DivingProces {
     public static List<Integer> depthStopsList = new ArrayList<>();
 
     public static List<Integer> timeStopsListBreak = new ArrayList();
+
     public static List<Integer> depthStopsListBreak = new ArrayList<>();
 
 
     public int getWorkingTime() {
-
         return workingTime;
     }
 

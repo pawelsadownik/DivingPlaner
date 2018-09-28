@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h2>Analiza ryzyka</h2>
+<h1>Analiza ryzyka</h1>
 <form action="#" th:action="@{/riskForm}"
       method="post">
 
@@ -26,10 +26,25 @@
         <tr th:each="risk, status : ${riskWrapper.riskList}">
             <td><input th:field="*{riskList[__${status.index}__].etapPrac}" /></td>
             <td><input th:field="*{riskList[__${status.index}__].rodzajZagrozenia}"/></td>
-            <td><input th:field="*{riskList[__${status.index}__].zagrozonaOsoba}"/></td>
-            <td><input th:field="*{riskList[__${status.index}__].wstepneRyzyko}"/></td>
+            <td>
+                <select th:field="*{riskList[__${status.index}__].zagrozonaOsoba}">
+                    <option th:value="nurek">nurek </option>
+                    <option th:value="sygnalista">sygnalista</option>
+                    <option th:value="nurek+' '+zabezpieczajacy">nurek zabezpieczający</option>
+                    <option th:value="obsluga+' '+sprzetu">obsługa sprzętu</option>
+                    <option th:value="kierownik">kierownik</option>
+                </select>
+            </td>
+            <td>
+                <p><input type="radio" th:value="Akceptowalne" th:field="*{riskList[__${status.index}__].wstepneRyzyko}" />Akceptowalne</p>
+                <p><input type="radio" th:value="Niekceptowalne" th:field="*{riskList[__${status.index}__].wstepneRyzyko}" />Nieakceptowalne</p>
+
+            </td>
             <td><input th:field="*{riskList[__${status.index}__].przeciwdzialanie}"/></td>
-            <td><input th:field="*{riskList[__${status.index}__].koncoweRyzyko}"/></td>
+            <td>
+                <p><input type="radio" th:value="Akceptowalne" th:field="*{riskList[__${status.index}__].koncoweRyzyko}" />Akceptowalne</p>
+                <p><input type="radio" th:value="Niekceptowalne" th:field="*{riskList[__${status.index}__].koncoweRyzyko}" />Nieakceptowalne</p>
+            </td>
         </tr>
 
         </tbody>
@@ -37,14 +52,17 @@
         <tr></tr>
         </tfoot>
     </table>
-    <input type="submit"  name="addRow" value="addRow"/>
+    <input type="submit"  name="addRow" value="add"/>
+    <h1>Podjete srodki bezpieczeństwa</h1>
+
     <table class="dynatable" id="myTable" th:object="${divingPlanWrapper}">
 
     <tr th:each="sec, status : ${divingPlanWrapper.divingPlanList}">
-        <td><input th:field="*{divingPlanList[__${status.index}__].security}" /></td>
+        <td><textarea id="Purpose" cols="50" rows="4" th:value="null" th:field="*{divingPlanList[__${status.index}__].security}" size="50" > </textarea></td>
+
     </tr>
     </table>
-    <input type="submit"  name="addSec" value="addSec"/>
+    <input type="submit"  name="addSec" value="add"/>
 </form>
 
 
