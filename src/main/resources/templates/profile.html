@@ -22,9 +22,8 @@
 <form name="myForm" action="#" th:action="@{/profile}" th:object="${profile}" onsubmit="return validateForm()" method="post">
     <p>GLEBOKOSC (21-49)[m]: <input type="text" name="depth" th:field="*{depth}"  /></p>
     <p>CZAS (36-180)[min]: <input type="text" name="overalTime" th:field="*{overalTime}" /></p>
-    <p><input type="submit" value="Submit" /></p>
+    <p><input type="submit" value="Get profile" /></p>
 
 </form>
-<input type="submit"  name="obliczenia" value="obliczenia"/>
 </body>
 </html>

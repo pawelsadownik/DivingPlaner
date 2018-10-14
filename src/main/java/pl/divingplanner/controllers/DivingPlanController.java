@@ -29,8 +29,8 @@ public class DivingPlanController {
 
         final String HTML = "src/main/resources/templates/divingPlanReady.html";
 
-        PdfDocument pdfDocument = new PdfDocument();
-        pdfDocument.generatePDFFromHTML(HTML);
+        //PdfDocument pdfDocument = new PdfDocument();
+        //pdfDocument.generatePDFFromHTML(HTML);
 
         return "divingPlanReady";
 

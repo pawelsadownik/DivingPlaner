@@ -1,7 +1,6 @@
 package pl.divingplanner.excelService;
 
 import org.springframework.stereotype.Service;
-import pl.divingplanner.controllers.WelcomeController;
 import pl.divingplanner.emailService.EmailService;
 import pl.divingplanner.model.DivingProces;
 import pl.divingplanner.model.Email;

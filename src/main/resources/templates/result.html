@@ -21,16 +21,9 @@
 <p th:text="'Ascend time to first deco stop: '+ ${profile.ascendTime}+' min'" />
 <p th:text="'Speed to first deco stop: ' + ${profile.ascendSpeed}+' m/min'" />
 
-    <form action="#" th:action="@{/sendEmail}" th:object="${email}" method="post">
-        <p>email: <input type="text" th:field="*{address}" /></p>
-
-        <p><input type="submit" value="SEND EMAIL" /> </p>
-    </form>
     <p></p>
     <a href="/divingPlanForm">CREATE DIVING PLAN</a><br>
     <a href="/profile">Submit another profile</a><br>
-    <a href="/riskForm">RISK</a><br>
-
 
     <div class="container">
         <h2 align="center"></h2>

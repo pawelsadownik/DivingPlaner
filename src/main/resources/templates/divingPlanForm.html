@@ -36,7 +36,9 @@
 
     <div th:object="${divingPlan}">
         <p>Procedura wykonywania prac podwodnych: </p>
-        <p>Inne: <input type="text" th:field="*{procedure}" /></p>
+        <textarea id="Procedure" cols="200" rows="4" th:value="null" th:field="*{procedure}" placeholder="(Technologia nurkowania)"> </textarea>
+        <textarea id="Procedure2" cols="200" rows="4" th:value="null" th:field="*{procedure}" placeholder="(Kolejność głównych przedsięwzięć)"> </textarea>
+
     </div>
 
 

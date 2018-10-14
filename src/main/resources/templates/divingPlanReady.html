@@ -51,6 +51,119 @@
         </table>
     </div>
 
+    <div th:if="${not #lists.isEmpty(divingPlan.procedure)}">
+        <h2>Procedura wykonywania prac podwodnych</h2><br>
+        <h3>Technologia: </h3>
+        <p th:text="${divingPlan.procedure.get(0)}" /><br>
+        <h3>Kolejnosc dzialan: </h3>
+        <p th:text="${divingPlan.procedure.get(1)}" />
+
+
+    </div>
+
+</div>
+<div>
+   <h2> Procedura dekompresji: </h2>
+    <div align="center">
+
+        <p th:text="'depth: ' + ${profile.depth} +' m'" />
+        <p th:text="'time: ' + ${profile.overalTime}+' min'" />
+        <p th:text="'deco stop at _meters and time _minutes ()-oxygen time  ' +${profile.depthStopTime}" />
+        <p th:text="'Ascend time to first deco stop: '+ ${profile.ascendTime}+' min'" />
+        <p th:text="'Speed to first deco stop: ' + ${profile.ascendSpeed}+' m/min'" />
+
+        <div class="container">
+            <h2 align="center"></h2>
+            <script
+                    src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <!-- Latest compiled and minified JavaScript -->
+            <script
+                    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+            <canvas id="myChart"></canvas>
+            <canvas id="myChart2"></canvas>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+            <script th:inline="javascript">
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    // The type of chart we want to create
+                    type: 'line',
+                    // The data for our dataset
+                    data: {
+                        labels: [[${time}]],
+                        datasets: [{
+                            label: "DEKOMPRESJA",
+                            backgroundColor: 'rgb(40, 66, 131)',
+                            borderColor: 'rgb(40, 66, 131)',
+                            data:
+                                [[${depth}]],
+
+
+                        }]
+                    },
+
+                    // Configuration options go here
+                    options: {
+                        elements: {
+                            line: {
+                                tension: 0, // disables bezier curves
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    reverse: true,
+                                }
+                            }]
+                        }
+                    }
+                });
+            </script>
+            <div class="container2">
+                <td>
+                <span th:unless="${profile.counterBreak == false}"><h2 align="center"></h2>
+                <script th:inline="javascript">
+            var ctx = document.getElementById('myChart2').getContext('2d');
+            var chart = new Chart(ctx, {
+
+                // The type of chart we want to create
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: [[${timeBreak}]],
+                    datasets: [{
+                        label: "DEKOMPRESJA PRZERYWANA",
+                        backgroundColor: 'rgb(40, 66, 131)',
+                        borderColor: 'rgb(40, 66, 131)',
+                        data:
+                            [[${depthBreak}]],
+                    }]
+                },
+                // Configuration options go here
+                options: {
+                    elements: {
+                        line: {
+                            tension: 0, // disables bezier curves
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                reverse: true,
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
+
+                </span>
+                </td>
+
+            </div>
+        </div>
+    </div>
 
 
 </div>

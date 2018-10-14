@@ -1,8 +1,5 @@
 package pl.divingplanner.controllers;
 
-
-import org.springframework.web.servlet.view.RedirectView;
-import pl.divingplanner.emailService.EmailService;
 import pl.divingplanner.excelService.DataColecting;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +14,10 @@ import java.util.*;
 import java.util.List;
 
 @Controller
-public class WelcomeController {
+public class ProfileController {
 
     @Autowired
     private DataColecting dataColecting;
-    private EmailService emailService;
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profileForm(Model model) throws IOException, InvalidFormatException {
@@ -59,26 +55,15 @@ public class WelcomeController {
         model.addAttribute("timeBreak", timeBreak);
         model.addAttribute("depthBreak", depthBreak);
 
-        Email email = new Email();
-
-        model.addAttribute("email", email);
-
         return "result";
     }
-
-    @PostMapping("/sendEmail")
-    public String sendEmail(@ModelAttribute Email email, BindingResult errors, Model model) {
-
-       // email.setContent( z sesji );
-        //pl.divingplanner.emailService.send(email);
-       //model.addAttribute("address", address);
-        return "email";
-    }
+/*
     @PostMapping(value = "/profile", params = "obliczenia")
     public String obliczenia() {
 
         return "calculations";
     }
+    */
 }
 
 
