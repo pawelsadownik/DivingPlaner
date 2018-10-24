@@ -13,6 +13,8 @@ public class DataColecting  {
 
     private ExcelReader reader;
 
+    public DataColecting(){}
+
     @Autowired
     public DataColecting(ExcelReader reader) {
         this.reader = reader;

@@ -30,7 +30,6 @@ public class ProfileController {
     public String getProfile(@ModelAttribute Profile profile, BindingResult errors, Model model) throws IOException, InvalidFormatException {
 
         DivingProces divingProces = new DivingProces();
-        ExcelReader excelReader = new ExcelReader();
 
         divingProces.depthStopsList.clear();
         divingProces.timeStopsList.clear();
@@ -57,13 +56,7 @@ public class ProfileController {
 
         return "result";
     }
-/*
-    @PostMapping(value = "/profile", params = "obliczenia")
-    public String obliczenia() {
 
-        return "calculations";
-    }
-    */
 }
 
 

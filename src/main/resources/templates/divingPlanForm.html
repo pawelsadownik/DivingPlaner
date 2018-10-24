@@ -44,51 +44,84 @@
 
     <div th:object="${divingPlan}">
         <p>Wyposażenie: </p>
-        <p>Inne: <input type="text" th:field="*{equipment}" /></p>
+        <textarea id="Equipment" cols="200" rows="4" th:value="null" th:field="*{equipment}" placeholder="(Wykorzystane wyposażenie)"> </textarea>
     </div>
 
     <div th:object="${divingPlan}">
         <p>Skład ekipy </p>
-        <p>Inne: <input type="text" th:field="*{team}" /></p>
+        <textarea id="Team" cols="200" rows="4" th:value="null" th:field="*{team}" placeholder="(Skład ekipy)"> </textarea>
     </div>
 
     <div th:object="${divingPlan}">
         <p>Zapas czynników oddechowych </p>
-        <p>Inne: <input type="text" th:field="*{airSupply}" /></p>
+        <p>Powietrze: <input type="text" th:field="*{airSupply}" /></p>
+        <p>Tlen: <input type="text" th:field="*{airSupply}" /></p>
     </div>
 
     <div th:object="${divingPlan}">
-        <p>Zapas czynników oddechowych </p>
-        <p>Inne: <input type="text" th:field="*{commands}" /></p>
+        <p>Zasady przekazywania poleceń i ich potwierdzania </p>
+        <textarea id="Commands" cols="200" rows="4" th:value="null" th:field="*{commands}" placeholder="(łączność  przewodowa – przekazywanie poleceń od i do kierownika poprzez operatora tablicy, lina sygnalizacyjna – przekazywanie sygnałów poprzez wiązkę
+       Sygnalista melduje o odebranych sygnałach kierownikowi
+       Operator tablicy zasilania melduje o odebraniu komunikatu kierownikowi)"> </textarea>
     </div>
     <div th:object="${divingPlan}">
-        <p>Zapas czynników oddechowych </p>
-        <p>Inne: <input type="text" th:field="*{communication}" /></p>
-    </div>
-
-    <div th:object="${divingPlan}">
-        <p>Zapas czynników oddechowych </p>
-        <p>Inne: <input type="text" th:field="*{asecuration}" /></p>
-    </div>
-
-    <div th:object="${divingPlan}">
-        <p>Zapas czynników oddechowych </p>
-        <p>Inne: <input type="text" th:field="*{accident}" /></p>
+        <p>Procedura łączności zasadniczej i awaryjnej </p>
+        <p>Łączność zasadnicza: </p>
+            <textarea id="CommunicationBasic" cols="200" rows="4" th:value="null" th:field="*{communication}" placeholder="Sygnały umowne liną sygnałową na boi"> </textarea>
+        <p>Łączność awaryjna: </p>
+        <textarea id="CommunicationAux" cols="200" rows="4" th:value="null" th:field="*{communication}" placeholder="Sygnały dźwiękowe nadawane za pomocą dostępnych środków"> </textarea>
     </div>
 
     <div th:object="${divingPlan}">
-        <p>Zapas czynników oddechowych </p>
-        <p>Inne: <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>System asekuracji </p>
+        <textarea id="Asecuration" cols="200" rows="4" th:value="null" th:field="*{asecuration}" placeholder="nurek roboczy jest zabezpieczany przez nurka asekurującego z wody, na powierzchni sygnalista prowadzi nurka, deska ratownicza, RLKZH, lekarz"> </textarea>
     </div>
 
     <div th:object="${divingPlan}">
-        <p>Zapas czynników oddechowych </p>
-        <p>Inne: <input type="text" th:field="*{evacuation}" /></p>
+        <p>Tryb postępowania w sytuacjach awaryjnych: </p>
+        <textarea id="Accident" cols="200" rows="4" th:value="null" th:field="*{accident}" placeholder="Przerwanie prac podwodnych --> powiadomienie lekarza --> Wydobycie nurka z wody --> Tlenoterapia --> Zamocowanie nurka w desce ratowniczej --> Przetransportowanie nurka do komory dekompresyjnej --> W razie konieczności przetransportowanie nurka do Kliniki Medycyny Hiperbarycznej i Ratownictwa Morskiego"> </textarea>
+        <p>Dokumentacja medyncza: </p>
+        <textarea id="AccidentDocs" cols="200" rows="4" th:value="null" th:field="*{accident}" placeholder="protokół medyczny wypadku nurkowego -  NO 07-A026, arkusz 4minutowego badania neurologicznego - instrukcja zab. med."> </textarea>
+
     </div>
 
     <div th:object="${divingPlan}">
-        <p>Zapas czynników oddechowych </p>
-        <p>Inne: <input type="text" th:field="*{medic}" /></p>
+        <p>warunki hydrometeorologiczne:  , , pora dnia i roku </p>
+        <p>Przejrzystość wody: <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>przejrzystość powietrza: <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>Siła wiatru: <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>Kierunek wiatru: <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>Wysokość fali: <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>Głebokość <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>Rodzaj dna: <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>Siła prądu: <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>Temperatura wody: <input type="text" th:field="*{weatherConditions}" th:value="24"/></p>
+        <p>Temperatura powietrza: <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>Wysokość n.p.m.: <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>Przeszkody i obiekty podwodne: <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>Ruch jednostek pływających: <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>Pora dnia: <input type="text" th:field="*{weatherConditions}" /></p>
+        <p>Pora roku: <input type="text" th:field="*{weatherConditions}" /></p>
+
+
+    </div>
+
+    <div th:object="${divingPlan}">
+        <p>System powiadamiania na wypadek sytuacji awaryjnej: </p>
+        <p>Lekarz: <input type="text" th:field="*{evacuation}" /></p>
+        <p>Oficer dyżurny: <input type="text" th:field="*{evacuation}" /></p>
+
+    </div>
+
+    <div th:object="${divingPlan}">
+        <p>Zabezpieczenie medyczne: </p>
+        <p>Lekarz: <input type="text" th:field="*{evacuation}" /></p>
+        <p>Komora dekompresyjna: <input type="text" th:field="*{evacuation}" /></p>
+        <p>Szpital:</p>
+        <textarea id="Hospital" cols="200" rows="4" th:value="null" th:field="*{accident}" placeholder="Klinika Medycyny Hiperbarycznej i Ratownictwa Morskiego : Adres: Powstania Styczniowego 9B, 81-519 Gdynia, Telefon: 58 699 86 54
+"> </textarea>
+
+
     </div>
 
     <p><input type="submit" value="Submit" /> </p>

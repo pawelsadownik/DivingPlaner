@@ -66,12 +66,6 @@
    <h2> Procedura dekompresji: </h2>
     <div align="center">
 
-        <p th:text="'depth: ' + ${profile.depth} +' m'" />
-        <p th:text="'time: ' + ${profile.overalTime}+' min'" />
-        <p th:text="'deco stop at _meters and time _minutes ()-oxygen time  ' +${profile.depthStopTime}" />
-        <p th:text="'Ascend time to first deco stop: '+ ${profile.ascendTime}+' min'" />
-        <p th:text="'Speed to first deco stop: ' + ${profile.ascendSpeed}+' m/min'" />
-
         <div class="container">
             <h2 align="center"></h2>
             <script
@@ -122,7 +116,7 @@
             </script>
             <div class="container2">
                 <td>
-                <span th:unless="${profile.counterBreak == false}"><h2 align="center"></h2>
+                <span th:unless="${counterBreak == false}"><h2 align="center"></h2>
                 <script th:inline="javascript">
             var ctx = document.getElementById('myChart2').getContext('2d');
             var chart = new Chart(ctx, {
@@ -167,11 +161,9 @@
 
 
 </div>
-
-<input type="submit"  name="pdf" value="pdf"/>
-
+<h2><a href="/profile">Submit another profile</a></h2><br>
 <h2><a href="/riskForm">RISK MANAGEMENT</a></h2>
-
+<input type="submit"  name="pdf" value="pdf"/>
 
 </body>
 </html>
