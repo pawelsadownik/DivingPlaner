@@ -21,33 +21,17 @@
 <div th:if="${not #lists.isEmpty(divingPlan.divingType)}">
     <h2>Typ nurkowania</h2>
     <table class="table table-striped">
-        <tr>
-            <th>Id</th>
-            <th>Description</th>
-        </tr>
 
-        <tr th:each="type : ${divingPlan.divingType}">
-            <td th:text="${divingPlan.divingType.indexOf(type)}+1"></td>
-            <td th:text="${type}"></td>
-        </tr>
+            <p th:text="${divingPlan.divingType.get(0)}" /><br>
+
+
     </table>
 </div>
 
     <div th:if="${not #lists.isEmpty(divingPlan.purpose)}">
         <h2>Cel nurkowania</h2>
         <table class="table table-striped">
-            <tr>
-                <th>Id</th>
-                <th>Description</th>
-            </tr>
-
-            <tr th:each="target : ${divingPlan.purpose}">
-                <td th:text="${divingPlan.purpose.indexOf(target)}+1"></td>
-                <td th:text="${target}"></td>
-
-
-            </tr>
-
+            <p th:text="${divingPlan.purpose.get(0)}" /><br>
         </table>
     </div>
 
@@ -61,7 +45,7 @@
 
     </div>
 
-</div>
+
 <div>
    <h2> Procedura dekompresji: </h2>
     <div align="center">
@@ -161,9 +145,125 @@
 
 
 </div>
+<div th:if="${not #lists.isEmpty(divingPlan.equipment)}">
+    <h2>Wyposazenie</h2><br>
+
+    <p th:text="${divingPlan.equipment.get(0)}" /><br>
+</div>
+
+
+<div th:if="${not #lists.isEmpty(divingPlan.team)}">
+    <h2>Skład ekipy</h2>
+    <table class="table table-striped">
+        <p th:text="${divingPlan.team.get(0)}" /><br>
+    </table>
+</div>
+
+<div>
+    <h2>Zapas powietrza:</h2>
+    <table class="table table-striped">
+        <h3>Powietrze:</h3>
+        <p th:text="${divingPlan.airSupply.get(0)}" /><br>
+
+        <h3>Tlen:</h3>
+        <p th:text="${divingPlan.airSupply.get(1)}" /><br>
+    </table>
+</div>
+
+<div>
+    <h2>Skład ekipy</h2>
+    <table class="table table-striped">
+        <p th:text="${divingPlan.team.get(0)}" /><br>
+    </table>
+</div>
+
+<div>
+    <h2>Zasady przekazywania poleceń i ich potwierdzania: </h2>
+    <table class="table table-striped">
+        <p th:text="${divingPlan.commands.get(0)}" /><br>
+    </table>
+</div>
+
+<div>
+    <h2>Procedura łączności zasadniczej i awaryjnej </h2>
+    <table class="table table-striped">
+        <h3>Łączność zasadnicza:</h3>
+        <p th:text="${divingPlan.communication.get(0)}" /><br>
+
+        <h3>Łączność awaryjna:</h3>
+        <p th:text="${divingPlan.communication.get(1)}" /><br>
+    </table>
+</div>
+
+<div>
+    <h2>System asekuracji </h2>
+    <table class="table table-striped">
+        <p th:text="${divingPlan.asecuration.get(0)}" /><br>
+    </table>
+</div>
+
+
+<div>
+    <h2>Tryb postępowania w sytuacjach awaryjnych: </h2>
+    <table class="table table-striped">
+        <p th:text="${divingPlan.accident.get(0)}" /><br>
+    </table>
+    <h2>Dokumentacja medyczna: </h2>
+    <table class="table table-striped">
+        <p th:text="${divingPlan.accident.get(1)}" /><br>
+    </table>
+</div>
+
+<div>
+    <h2>Warunki hydro-meteo: </h2>
+
+
+        <p> Przejrzystość wody: <span th:text="${divingPlan.weatherConditions.get(0)}"></span>m</p>
+        <p> przejrzystość powietrza: <span th:text="${divingPlan.weatherConditions.get(1)}"></span> m </p>
+        <p> Siła wiatru: <span th:text="${divingPlan.weatherConditions.get(2)}"></span>m</p>
+        <p> Kierunek wiatru: <span th:text="${divingPlan.weatherConditions.get(3)}"></span>m</p>
+        <p> Wysokość fali  <span th:text="${divingPlan.weatherConditions.get(4)}"></span>m</p>
+        <p> Głebokość: <span th:text="${divingPlan.weatherConditions.get(5)}"></span>m</p>
+        <p> Rodzaj dna: <span th:text="${divingPlan.weatherConditions.get(6)}"></span></p>
+        <p> Siła prądu: <span th:text="${divingPlan.weatherConditions.get(7)}"></span>w</p>
+        <p> Temperatura wody: <span th:text="${divingPlan.weatherConditions.get(8)}"></span>C</p>
+        <p> Temperatura powietrza: <span th:text="${divingPlan.weatherConditions.get(9)}"></span>C</p>
+        <p> Wysokość n.p.m. <span th:text="${divingPlan.weatherConditions.get(10)}"></span>m</p>
+        <p> Przeszkody i obiekty podwodne <span th:text="${divingPlan.weatherConditions.get(11)}"></span></p>
+        <p> Ruch jednostek pływających <span th:text="${divingPlan.weatherConditions.get(12)}"></span></p>
+        <p> Pora dnia <span th:text="${divingPlan.weatherConditions.get(13)}"></span></p>
+        <p> Pora roku <span th:text="${divingPlan.weatherConditions.get(14)}"></span></p>
+
+</div>
+
+<div>
+    <h2>System powiadamiania na wypadek sytuacji awaryjnej: </h2>
+    <table class="table table-striped">
+        <h3>Learz:</h3>
+        <p th:text="${divingPlan.evacuation.get(0)}" /><br>
+
+        <h3>Oficer dyżurny:</h3>
+        <p th:text="${divingPlan.evacuation.get(1)}" /><br>
+    </table>
+</div>
+
+<div>
+    <h2>Zabezpieczenie medyczne </h2>
+    <table class="table table-striped">
+        <h3>Learz:</h3>
+        <p th:text="${divingPlan.medic.get(0)}" /><br>
+
+        <h3>Komora dekomprsyjna:</h3>
+        <p th:text="${divingPlan.medic.get(1)}" /><br>
+
+        <h3>Szpital:</h3>
+        <p th:text="${divingPlan.medic.get(2)}" /><br>
+    </table>
+</div>
+
 <h2><a href="/profile">Submit another profile</a></h2><br>
 <h2><a href="/riskForm">RISK MANAGEMENT</a></h2>
 <input type="submit"  name="pdf" value="pdf"/>
-
+</div>
 </body>
 </html>

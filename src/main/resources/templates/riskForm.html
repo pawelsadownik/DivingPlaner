@@ -9,7 +9,7 @@
 <form action="#" th:action="@{/riskForm}"
       method="post">
 
-        <input type="submit" id="submitButton" th:value="Save"/>
+
 
     <table class="dynatable" id="myTable" th:object="${riskWrapper}">
         <thead>
@@ -62,7 +62,9 @@
 
     </tr>
     </table>
-    <input type="submit"  name="addSec" value="add"/>
+    <input type="submit"  name="addSec" value="add"/><br>
+
+    <input type="submit" id="submitButton" th:value="Save"/>
 </form>
 
 
