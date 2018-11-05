@@ -6,7 +6,7 @@
     </head>
 
     <script th:inline="javascript">
-        function validateForm() {
+        function validateFormProfile() {
             var x = document.forms["myForm"]["depth"].value;
             var y = document.forms["myForm"]["overalTime"].value;
 
@@ -33,7 +33,7 @@
 <body>
 
 <h1>PODSTAWOWE DANE NURKOWANIA</h1>
-<form name="myForm" action="#" th:action="@{/profile}" th:object="${profile}" onsubmit="return validateForm()" method="post">
+<form name="myForm" action="#" th:action="@{/profile}" th:object="${profile}" onsubmit="return validateFormProfile()" method="post">
     <p>GLEBOKOSC (21-49)[m]: <input type="text" th:id="depth" name="depth" th:field="*{depth}"  /></p>
     <p>CZAS (36-180)[min]: <input type="text" th:id="time" name="overalTime" th:field="*{overalTime}" /></p>
     <p><input type="submit" value="Get profile" /></p>

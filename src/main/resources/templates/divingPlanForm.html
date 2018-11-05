@@ -13,6 +13,326 @@
 
 </head>
 <body>
+<script th:inline="javascript">
+    function trimfield(str)
+    {
+        return str.replace(/^\s+|\s+$/g,'');
+    }
+
+    function validateForm() {
+
+        var Type = document.forms["myForm"]["Type"].value;
+        var Purpose = document.forms["myForm"]["Purpose"].value;
+        var Procedure = document.forms["myForm"]["Procedure"].value;
+        var Procedure2 = document.forms["myForm"]["Procedure2"].value;
+        var Equipment = document.forms["myForm"]["Equipment"].value;
+        var Team = document.forms["myForm"]["Team"].value;
+        var air = document.forms["myForm"]["air"].value;
+        var oxygen = document.forms["myForm"]["oxygen"].value;
+        var Commands = document.forms["myForm"]["Commands"].value;
+        var CommunicationBasic = document.forms["myForm"]["CommunicationBasic"].value;
+        var CommunicationAux = document.forms["myForm"]["CommunicationAux"].value;
+        var Asecuration = document.forms["myForm"]["Asecuration"].value;
+        var Accident = document.forms["myForm"]["Accident"].value;
+        var AccidentDocs = document.forms["myForm"]["AccidentDocs"].value;
+        var water = document.forms["myForm"]["water"].value;
+        var airClear = document.forms["myForm"]["airClear"].value;
+        var windStrength = document.forms["myForm"]["windStrength"].value;
+        var windDirection = document.forms["myForm"]["windDirection"].value;
+        var wave = document.forms["myForm"]["wave"].value;
+        var depth = document.forms["myForm"]["depth"].value;
+        var bottom = document.forms["myForm"]["bottom"].value;
+        var current = document.forms["myForm"]["current"].value;
+        var waterTemp = document.forms["myForm"]["waterTemp"].value;
+        var airTemp = document.forms["myForm"]["airTemp"].value;
+        var heigh = document.forms["myForm"]["heigh"].value;
+        var objects = document.forms["myForm"]["objects"].value;
+        var ships = document.forms["myForm"]["ships"].value;
+        var dayTime = document.forms["myForm"]["dayTime"].value;
+        var period = document.forms["myForm"]["period"].value;
+        var doctorNumber = document.forms["myForm"]["doctorNumber"].value;
+        var officerNumber = document.forms["myForm"]["officerNumber"].value;
+        var doctorName = document.forms["myForm"]["doctorName"].value;
+        var deco = document.forms["myForm"]["deco"].value;
+        var hospital = document.forms["myForm"]["hospital"].value;
+
+        var letters = /^[A-Za-z]+$/;
+        var numbers = /^[0-9]+$/;
+
+        String.prototype.trim = function() {
+            return this.replace(/^\s+|\s+$/g,"");
+        }
+
+
+        if (Type.trim() == ''){
+            alert("Brak danych: Rodzaj prac podwodnych");
+            document.getElementById("Type").style.borderColor = "coral";
+            return false;
+        }
+            else document.getElementById("Type").style.borderColor = "black";
+
+        if (Purpose.trim() == '') {
+            alert("Brak danych: Cel prac podwodnych");
+            document.getElementById('Purpose').style.borderColor = "coral";
+            return false;
+        }
+            else document.getElementById("Purpose").style.borderColor = "black";
+
+        if (Procedure.trim() == '') {
+            alert("Brak danych: Technologia nurkowania");
+            document.getElementById('Procedure').style.borderColor = "coral";
+            return false;
+        }
+            else document.getElementById("Procedure").style.borderColor = "black";
+
+        if (Procedure2.trim() == '') {
+            alert("Brak danych: Kolejność głownych przedsięwzięć");
+            document.getElementById('Procedure2').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("Proedure2").style.borderColor = "black";
+
+        if (Equipment.trim() == '') {
+            alert("Brak danych: Wyposażenie");
+            document.getElementById('Equipment').style.borderColor = "coral";
+            return false;
+        }
+            else document.getElementById("Equipment").style.borderColor = "black";
+
+        if (Team.trim() == '') {
+            alert("Brak danych: Skład ekipy");
+            document.getElementById('Team').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("Team").style.borderColor = "black";
+
+        if (air.trim() == '') {
+            alert("Brak danych: Zapas czynnkiów oddechowych - powietrze");
+            document.getElementById('air').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("air").style.borderColor = "black";
+
+        if (oxygen.trim() == '') {
+            alert("Brak danych: Zapas czynnkiów oddechowych - tlen");
+            document.getElementById('oxygen').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("oxygen").style.borderColor = "black";
+
+        if (Commands.trim() == '') {
+            alert("Brak danych: Zasady przekazywania poleceń");
+            document.getElementById('Commands').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("Commands").style.borderColor = "black";
+
+        if (CommunicationBasic.trim() == '') {
+            alert("Brak danych: Łączność zasadnicza");
+            document.getElementById('CommunicationBasic').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("CommunicationBasic").style.borderColor = "black";
+
+
+        if (CommunicationAux.trim() == '') {
+            alert("Brak danych: Łączność zapasowa");
+            document.getElementById('CommunicationAux').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("CommunicationAux").style.borderColor = "black";
+
+        if (Asecuration.trim() == '') {
+            alert("Brak danych: System asekuracji");
+            document.getElementById('Asecuration').style.borderColor = "coral";
+            return false;
+        }
+
+        else document.getElementById("Asecuration").style.borderColor = "black";
+
+        if (Accident.trim() == '') {
+            alert("Brak danych: Tryb postępowania w sytuacjach medycznych");
+            document.getElementById('Accident').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("Accident").style.borderColor = "black";
+
+
+        if (AccidentDocs.trim() == '') {
+            alert("Brak danych: Dokumentacja medyczna");
+            document.getElementById('AccidentDocs').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("AccidentDocs").style.borderColor = "black";
+
+
+        if (water.trim() == '' || water.trim().match(letters)) {
+            alert("Brak danych lub złe dane: Przejrzystość wody");
+            document.getElementById('water').style.borderColor = "coral";
+            return false;
+        }
+
+        else document.getElementById("water").style.borderColor = "black";
+
+        if (airClear.trim() == '' || airClear.trim().match(letters)) {
+            alert("Brak danych lub złe dane: Przejrzystość powietrza");
+            document.getElementById('airClear').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("airClear").style.borderColor = "black";
+
+
+        if (windStrength.trim() == '' || windStrength.trim().match(letters)) {
+            alert("Brak danych lub złe dane: Siła wiatru");
+            document.getElementById('windStrength').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("windStrength").style.borderColor = "black";
+
+
+        if (windDirection.trim() == '' || windDirection.trim().match(letters)) {
+            alert("Brak danych lub złe dane: Kierunek wiatru");
+            document.getElementById('windDirection').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("windDirection").style.borderColor = "black";
+
+
+        if (wave.trim() == '' || wave.trim().match(letters)) {
+            alert("Brak danych lub złe dane: Wysokość fali");
+            document.getElementById('wave').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("wave").style.borderColor = "black";
+
+        if (depth.trim() == '' || depth.trim().match(letters)) {
+            alert("Brak danych lub złe dane: Głębokość");
+            document.getElementById('depth').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("depth").style.borderColor = "black";
+
+
+        if (bottom.trim() == '' || bottom.trim().match(numbers)) {
+            alert("Brak danych lub złe dane: Rodzaj dna");
+            document.getElementById('bottom').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("bottom").style.borderColor = "black";
+
+
+        if (depth.trim() == ''|| depth.trim().match(letters)) {
+            alert("Brak danych lub złe dane: Głębokość");
+            document.getElementById('depth').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("depth").style.borderColor = "black";
+
+
+        if (current.trim() == '' || current.match(letters)) {
+            alert("Brak danych lub złe dane: Siła prądu");
+            document.getElementById('current').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("current").style.borderColor = "black";
+
+
+        if (waterTemp.trim() == '' || waterTemp.trim().match(letters)) {
+            alert("Brak danych lub złe dane: Temperatura wody");
+            document.getElementById('waterTemp').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("waterTemp").style.borderColor = "black";
+
+
+        if (airTemp.trim() == '' || airTemp.trim().match(letters)) {
+            alert("Brak danych lub złe dane: Temperatura powietrza");
+            document.getElementById('airTemp').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("airTemp").style.borderColor = "black";
+
+
+        if (heigh.trim() == '' || heigh.trim().match(letters)) {
+            alert("Brak danych lub złe dane: Wysokość n.p.m.");
+            document.getElementById('heigh').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("heigh").style.borderColor = "black";
+
+        if (objects.trim() == '') {
+            alert("Brak danych: Przeszkody i obiekty podwodne");
+            document.getElementById('objects').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("objects").style.borderColor = "black";
+
+
+        if (ships.trim() == '') {
+            alert("Brak danych: Ruch jednostek pływających");
+            document.getElementById('ships').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("ships").style.borderColor = "black";
+
+
+        if (dayTime.trim() == '') {
+            alert("Brak danych: Pora dnia");
+            document.getElementById('dayTime').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("dayTime").style.borderColor = "black";
+
+
+        if (period.trim() == '') {
+            alert("Brak danych: Pora roku");
+            document.getElementById('period').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("period").style.borderColor = "black";
+
+
+        if (doctorNumber.trim() == '' || doctorNumber.trim().match(letters)) {
+            alert("Brak danych lub złe dane: Lekrz");
+            document.getElementById('doctorNUmber').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("doctorNumber").style.borderColor = "black";
+
+
+        if (officerNumber.trim() == '' || officerNumber.trim().match(letters)) {
+            alert("Brak danych lub złe dane: Oficer dyzurny");
+            document.getElementById('officerNumber').style.borderColor = "coral";
+            return false;
+        }
+        else document.getElementById("officerNumber").style.borderColor = "black";
+
+
+        if (doctorName.trim() == '' ){
+            alert ("Brak danych: Learz");
+            document.getElementById("doctorName").style.borderColor="coral";
+            return false;
+        }
+        else document.getElementById("doctorName").style.borderColor = "black";
+
+
+        if (deco.trim() == ''){
+            alert ("Brak danych: Komora dekompresyjna");
+            document.getElementById("deco").style.borderColor="coral";
+            return false;
+        }
+        else document.getElementById("deco").style.borderColor = "black";
+
+
+        if (hospital.trim() == '' ){
+            alert ("Brak danych: Szpital");
+            document.getElementById("hospital").style.borderColor="coral";
+            return false;
+        }
+        else document.getElementById("hospital").style.borderColor = "black";
+
+    }
+</script>
 
 <h1>Diving Plan</h1>
 
@@ -115,7 +435,7 @@
         <p>Lekarz: <input type="text" th:id="doctorName" th:field="*{medic}" /></p>
         <p>Komora dekompresyjna: <input type="text" th:id="deco" th:field="*{medic}" /></p>
         <p>Szpital:</p>
-        <textarea id="Hospital" cols="200" rows="4" th:value="null" th:field="*{medic}" placeholder="Klinika Medycyny Hiperbarycznej i Ratownictwa Morskiego : Adres: Powstania Styczniowego 9B, 81-519 Gdynia, Telefon: 58 699 86 54
+        <textarea id="hospital" cols="200" rows="4" th:value="null" th:field="*{medic}" placeholder="Klinika Medycyny Hiperbarycznej i Ratownictwa Morskiego : Adres: Powstania Styczniowego 9B, 81-519 Gdynia, Telefon: 58 699 86 54
 "> </textarea>
 
 
@@ -125,213 +445,7 @@
 
 </form>
 
-<script th:inline="javascript">
-    function validateForm() {
 
-        var Type = document.forms["myForm"]["Type"].value;
-        var Purpose = document.forms["myForm"]["Purpose"].value;
-        var Procedure = document.forms["myForm"]["Procedure"].value;
-        var Procedure2 = document.forms["myForm"]["Procedure2"].value;
-        var Equipment = document.forms["myForm"]["Equipment"].value;
-        var Team = document.forms["myForm"]["Team"].value;
-        var air = document.forms["myForm"]["air"].value;
-        var oxygen = document.forms["myForm"]["oxygen"].value;
-        var Commands = document.forms["myForm"]["Commands"].value;
-        var CommunicationBasic = document.forms["myForm"]["CommunicationBasic"].value;
-        var CommunicationAux = document.forms["myForm"]["CommunicationAux"].value;
-        var Asecuration = document.forms["myForm"]["Asecuration"].value;
-        var Accident = document.forms["myForm"]["Accident"].value;
-        var AccidentDocs = document.forms["myForm"]["AccidentDocs"].value;
-        var water = document.forms["myForm"]["water"].value;
-        var airClear = document.forms["myForm"]["airClear"].value;
-        var windStrength = document.forms["myForm"]["windStrength"].value;
-        var windDirection = document.forms["myForm"]["windDirection"].value;
-        var wave = document.forms["myForm"]["wave"].value;
-        var depth = document.forms["myForm"]["depth"].value;
-        var bottom = document.forms["myForm"]["bottom"].value;
-        var current = document.forms["myForm"]["current"].value;
-        var waterTemp = document.forms["myForm"]["waterTemp"].value;
-        var airTemp = document.forms["myForm"]["airTemp"].value;
-        var heigh = document.forms["myForm"]["heigh"].value;
-        var objects = document.forms["myForm"]["objects"].value;
-        var ships = document.forms["myForm"]["ships"].value;
-        var dayTime = document.forms["myForm"]["dayTime"].value;
-        var period = document.forms["myForm"]["period"].value;
-        var doctorNumber = document.forms["myForm"]["doctorNumber"].value;
-        var officerNumber = document.forms["myForm"]["officerNumber"].value;
-        var doctorName = document.forms["myForm"]["doctorName"].value;
-        var deco = document.forms["myForm"]["deco"].value;
-        var Hospital = document.forms["myForm"]["Hospital"].value;
-
-        var letters = /^[A-Za-z]+$/;
-        var numbers = /^[0-9]+$/;
-
-
-        if (Type.match("")) {
-            alert("Brak danych: Rodzaj prac podwodnych");
-            document.getElementById('Type').style.borderColor = "coral";
-            return false;
-        }
-
-        if (Purpose.match("")) {
-            alert("Brak danych: Cel prac podwodnych");
-            document.getElementById('Purpose').style.borderColor = "coral";
-            return false;
-        }
-
-        if (Procedure.match("")) {
-            alert("Brak danych: Technologia nurkowania");
-            document.getElementById('Procedure').style.borderColor = "coral";
-            return false;
-        }
-        if (Procedure2.match("")) {
-            alert("Brak danych: Kolejność głownych przedsięwzięć");
-            document.getElementById('Procedure2').style.borderColor = "coral";
-            return false;
-        }
-        if (Equipment.match("")) {
-            alert("Brak danych: Wyposażenie");
-            document.getElementById('Equipment').style.borderColor = "coral";
-            return false;
-        }
-        if (Team.match("")) {
-            alert("Brak danych: Skład ekipy");
-            document.getElementById('Team').style.borderColor = "coral";
-            return false;
-        }
-        if (air.match("")) {
-            alert("Brak danych: Zapas czynnkiów oddechowych - powietrze");
-            document.getElementById('air').style.borderColor = "coral";
-            return false;
-        }
-        if (oxygen.match("")) {
-            alert("Brak danych: Zapas czynnkiów oddechowych - tlen");
-            document.getElementById('oxygen').style.borderColor = "coral";
-            return false;
-        }
-        if (air.match("")) {
-            alert("Brak danych: Zapas czynnkiów oddechowych - powietrze");
-            document.getElementById('air').style.borderColor = "coral";
-            return false;
-        }
-        if (Commands.match("")) {
-            alert("Brak danych: Zasady przekazywania poleceń");
-            document.getElementById('Commands').style.borderColor = "coral";
-            return false;
-        }
-        if (CommunicationBasic.match("")) {
-            alert("Brak danych: Łączność zasadnicza");
-            document.getElementById('CommunicationBasic').style.borderColor = "coral";
-            return false;
-        }
-        if (CommunicationAux.match("")) {
-            alert("Brak danych: Łączność zapasowa");
-            document.getElementById('CommunicationAux').style.borderColor = "coral";
-            return false;
-        }
-        if (Asecuration.match("")) {
-            alert("Brak danych: System asekuracji");
-            document.getElementById('Asecuration').style.borderColor = "coral";
-            return false;
-        }
-        if (Accident.match("")) {
-            alert("Brak danych: Tryb postępowania w sytuacjach medycznych");
-            document.getElementById('Accident').style.borderColor = "coral";
-            return false;
-        }
-        if (AccidentDocs.match("")) {
-            alert("Brak danych: Dokumentacja medyczna");
-            document.getElementById('AccidentDocs').style.borderColor = "coral";
-            return false;
-        }
-        if (water.match("") || water.match(letters)) {
-            alert("Brak danych lub złe dane: Przejrzystość wody");
-            document.getElementById('water').style.borderColor = "coral";
-            return false;
-        }
-        if (airClear.match("") || airClear.match(letters)) {
-            alert("Brak danych lub złe dane: Przejrzystość powietrza");
-            document.getElementById('airClear').style.borderColor = "coral";
-            return false;
-        }
-        if (windStrength.match("") || windStrength.match(letters)) {
-            alert("Brak danych lub złe dane: Siła wiatru");
-            document.getElementById('windStrength').style.borderColor = "coral";
-            return false;
-        }
-        if (windDirection.match("") || windDirection.match(letters)) {
-            alert("Brak danych lub złe dane: Kierunek wiatru");
-            document.getElementById('windDirection').style.borderColor = "coral";
-            return false;
-        }
-        if (wave.match("") || wave.match(letters)) {
-            alert("Brak danych lub złe dane: Wysokość fali");
-            document.getElementById('wave').style.borderColor = "coral";
-            return false;
-        }
-        if (depth.match("") || depth.match(letters)) {
-            alert("Brak danych lub złe dane: Głębokość");
-            document.getElementById('depth').style.borderColor = "coral";
-            return false;
-        }
-        if (bottom.match("") || bottom.match(numbers)) {
-            alert("Brak danych lub złe dane: Rodzaj dna");
-            document.getElementById('bottom').style.borderColor = "coral";
-            return false;
-        }
-        if (depth.match("") || depth.match(letters)) {
-            alert("Brak danych lub złe dane: Głębokość");
-            document.getElementById('depth').style.borderColor = "coral";
-            return false;
-        }
-        if (current.match("") || current.match(letters)) {
-            alert("Brak danych lub złe dane: Siła prądu");
-            document.getElementById('current').style.borderColor = "coral";
-            return false;
-        }
-        if (waterTemp.match("") || waterTemp.match(letters)) {
-            alert("Brak danych lub złe dane: Temperatura wody");
-            document.getElementById('waterTemp').style.borderColor = "coral";
-            return false;
-        }
-        if (airTemp.match("") || airTemp.match(letters)) {
-            alert("Brak danych lub złe dane: Temperatura powietrza");
-            document.getElementById('airTemp').style.borderColor = "coral";
-            return false;
-        }
-        if (heigh.match("") || heigh.match(letters)) {
-            alert("Brak danych lub złe dane: Wysokość n.p.m.");
-            document.getElementById('heigh').style.borderColor = "coral";
-            return false;
-        }
-        if (objects.match("")) {
-            alert("Brak danych: Przeszkody i obiekty podwodne");
-            document.getElementById('objects').style.borderColor = "coral";
-            return false;
-        }
-        if (ships.match("")) {
-            alert("Brak danych: Ruch jednostek pływających");
-            document.getElementById('ships').style.borderColor = "coral";
-            return false;
-        }
-        if (dayTime.match("")) {
-            alert("Brak danych: Pora dnia");
-            document.getElementById('dayTime').style.borderColor = "coral";
-            return false;
-        }
-        if (period.match("")) {
-            alert("Brak danych: Pora roku");
-            document.getElementById('period').style.borderColor = "coral";
-            return false;
-        }
-        if (doctorNumber.match("") || doctorNumber.match(letters)) {
-            alert("Brak danych lub złe dane: Lekrz");
-            document.getElementById('airTemp').style.borderColor = "coral";
-            return false;
-        }
-
-    }
-</script>
 </body>
 </html>
 
